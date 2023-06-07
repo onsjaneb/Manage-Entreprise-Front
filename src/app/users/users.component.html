@@ -1,0 +1,299 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title"><i class="feather icon-user"></i> Personnels</h6>
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary me-2"
+          (click)="openXlModal(adduser)"><i class="feather
+            icon-plus"></i>
+          Ajouter personnels</button>
+      </div>
+      <div>
+        <div class="row mt-7" *ngIf="nbru==0">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-8">
+            <h6>0 Personnels</h6>
+          </div>
+        </div>
+        <div class="table-responsive mt-1" *ngIf="nbru>0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+                <th>Role</th>
+                <th>Login</th>
+                <th>Date Ajout</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let u of users">
+              <tr>
+                <td><button type="button"
+                    class="btn btn-primary" (click)="openXlModal(voiruser)"><i
+                      class="mdi mdi-eye"></i></button>
+                  <button type="button"
+                    class="btn btn-primary m-1"
+                    (click)="openXlModal(updateuser)"><i class="mdi
+                      mdi-note-edit"></i></button>
+                  <button type="button" class="btn
+                    btn-primary" (click)="deleteUser(u.id)"><i class="mdi
+                      mdi-delete-circle"></i></button></td>
+                <td>{{u.NomUser}}</td>
+                <td>{{u.PrenomUser}}</td>
+                <td>{{u.Telephone}}</td>
+                <td>{{u.Role}}</td>
+                <td>{{u.Utilisateur}}</td>
+                <td>{{u.DateAjout | date:'longDate'}}</td>
+              </tr>
+              <ng-template #voiruser let-modal class="border">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <a class="sidebar-brand nobleui-logo">
+                          Menu<span>tium</span>
+                          <h4 class="card-title mt-2"><i class="feather
+                              icon-truck"></i>
+                            {{u.NomUser}} {{u.PrenomUser}}</h4>
+                        </a>
+                        <div class="row mt-2">
+                          <div class="col-md-6 mt-2"><h5>Nom :
+                              {{u.NomUser}}</h5></div>
+                          <div class="col-md-6 mt-2"><h5>Prénom :
+                              {{u.PrenomUser}}</h5></div>
+                          <div class="col-md-6 mt-2"><h5>Numéro Téléphone :
+                              {{u.Telephone}}</h5></div>
+                          <div class="col-md-6 mt-2"><h5>Email :
+                              {{u.Email}}</h5></div>
+                          <div class="col-md-6 mt-2"><h5>Login :
+                              {{u.Utilisateur}}</h5></div>
+                          <div class="col-md-6 mt-2"><h5>Role :
+                              {{u.Role}}</h5></div>
+                          <div class="col-md-6 mt-2"><h5>Date ajout :
+                              {{u.DateAjout | date:'longDate'}}</h5></div>
+                          <div class="col-md-6 mt-2"><h5>Mot de passe :
+                              {{u.Login}}</h5></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template #updateuser let-modal class="border">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <a class="sidebar-brand nobleui-logo">
+                          Menu<span>tium</span>
+                          <h4 class="card-title mt-2"><i class="feather
+                              icon-user"></i>
+                            {{u.NomUser}} {{u.PrenomUser}}</h4>
+                        </a>
+                        <div class="row mt-2">
+                          <form class="forms-sample">
+                            <div class="row mb-3">
+                              <div class="col-md-4 mt-3">
+                                <label for="Nom" class="form-label">Nom *</label>
+                                <input type="text" class="form-control" id="Nom"
+                                  placeholder="Nom" required
+                                  [(ngModel)]="u.NomUser"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                              </div>
+                              <div class="col-md-4 mt-3">
+                                <label for="Prénom" class="form-label">Prénom *</label>
+                                <input type="text" class="form-control"
+                                  id="Prénom"
+                                  placeholder="Prénom" required
+                                  [(ngModel)]="u.PrenomUser"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                              </div>
+                              <div class="col-md-4 mt-3">
+                                <label for="Telephone" class="form-label">Téléphone
+                                  *</label>
+                                <input type="number" class="form-control"
+                                  id="Telephone"
+                                  placeholder="N° téléphone" required
+                                  [(ngModel)]="u.Telephone"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                              </div>
+                              <div class="col-md-4 mt-3">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control"
+                                  id="email"
+                                  placeholder="Email" required
+                                  [(ngModel)]="u.Email"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                              </div>
+                              <div class="col-md-4 mt-3">
+                                <label for="login" class="form-label">Login *</label>
+                                <input type="text" class="form-control"
+                                  id="login"
+                                  placeholder="Login" placeholder="Login"
+                                  required
+                                  [(ngModel)]="u.Utilisateur"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                              </div>
+                              <div class="col-md-4 mt-3">
+                                <label for="role" class="form-label">Role *</label>
+                                <select class="form-select form-select-sm mb-3"
+                                  placeholder="Login" required
+                                  [(ngModel)]="u.Role"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                                  <option selected value="Assistant">Assistant</option>
+                                  <option value="Gérant">Gérant</option>
+                                </select>
+                              </div>
+                              <div class="col-md-4 mt-3">
+                                <label for="Motpasse" class="form-label">Mot de
+                                  passe *</label>
+                                <input type="text" class="form-control"
+                                  id="Motpasse"
+                                  placeholder="Mot de passe" placeholder="Mot de
+                                  passe"
+                                  required
+                                  [(ngModel)]="u.Login"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                              </div>
+                              <div class="col-md-4 mt-3">
+                                <label for="dateajout" class="form-label">Ajouté
+                                  le *</label>
+                                <input type="date" class="form-control"
+                                  id="dateajout"
+                                  required
+                                  [(ngModel)]="u.DateAjout"
+                                  [ngModelOptions]="{standalone:
+                                  true}">
+                              </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary me-2"
+                              [disabled]="true" (click)="modal.close('by:
+                              close icon')">Enregistrer</button>
+                            <button class="btn btn-secondary" [swal]="{title:
+                              'Annulation !', text: '', showConfirmButton:
+                              false,
+                              timer: 3000, icon: 'error'}"
+                              (click)="modal.close('by:
+                              close icon')">Annuler</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
+</div>
+<ng-template #adduser let-modal class="border">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <a class="sidebar-brand nobleui-logo">
+            Menu<span>tium</span>
+            <h4 class="card-title mt-2"><i class="feather icon-user-plus"></i>
+              Ajouter personnel</h4>
+          </a>
+          <div class="row mt-2">
+            <form class="forms-sample" (ngSubmit)="AddUsre()">
+              <div class="row mb-3">
+                <div class="col-md-4 mt-3">
+                  <label for="Nom" class="form-label">Nom *</label>
+                  <input type="text" class="form-control" id="Nom"
+                    placeholder="Nom" required
+                    [(ngModel)]="user.NomUser"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="Prénom" class="form-label">Prénom *</label>
+                  <input type="text" class="form-control" id="Prénom"
+                    placeholder="Prénom" required
+                    [(ngModel)]="user.PrenomUser"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="Telephone" class="form-label">Téléphone *</label>
+                  <input type="number" class="form-control" id="Telephone"
+                    placeholder="N° téléphone" required
+                    [(ngModel)]="user.Telephone"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="email" class="form-label">Email *</label>
+                  <input type="email" class="form-control" id="email"
+                    placeholder="Email" required
+                    [(ngModel)]="user.Email"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="login" class="form-label">Login *</label>
+                  <input type="text" class="form-control" id="login"
+                    placeholder="Login" placeholder="Login" required
+                    [(ngModel)]="user.Utilisateur"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="role" class="form-label">Role *</label>
+                  <select class="form-select form-select-sm mb-3"
+                    placeholder="Login" required
+                    [(ngModel)]="user.Role"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                    <option selected value="Assistant">Assistant</option>
+                    <option value="Gérant">Gérant</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="Motpasse" class="form-label">Mot de passe *</label>
+                  <input type="text" class="form-control" id="Motpasse"
+                    placeholder="Mot de passe" placeholder="Mot de passe"
+                    required
+                    [(ngModel)]="user.Login"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="dateajout" class="form-label">Ajouté le *</label>
+                  <input type="date" class="form-control" id="dateajout"
+                    required
+                    [(ngModel)]="user.DateAjout"
+                    [ngModelOptions]="{standalone:
+                    true}">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary me-2"
+                (click)="modal.close('by: close icon')">Enregistrer</button>
+              <button class="btn btn-secondary" [swal]="{title: 'Annulation !',
+                text: '', showConfirmButton: false, timer: 3000, icon: 'error'}"
+                (click)="modal.close('by: close icon')">Annuler</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

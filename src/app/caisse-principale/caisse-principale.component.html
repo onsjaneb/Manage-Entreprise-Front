@@ -1,0 +1,89 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title"><i class="feather icon-codepen"></i> Caisse
+      Principale</h6>
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary me-2"
+          (click)="openXlModal(addprev)"><i class="feather
+            icon-plus"></i>
+          Ajouter reçu</button>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
+</div>
+<ng-template #addprev let-modal class="border">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <a class="sidebar-brand nobleui-logo">
+            Menu<span>tium</span>
+            <h4 class="card-title mt-2"><i class="feather icon-credit-card"></i>
+              Ajouter reçu</h4>
+          </a>
+          <p>Noté Bien:</p>
+          <ul>
+            <li>Part livreur = (Total reçu - commission) X porcentage livreur </li>
+            <li>Part entreprise = (Total reçu - commission) X porcentage entreprise </li>
+            <li>Reçu Net = commission + part entreprise </li>
+          </ul>
+          <div class="row mt-2">
+            <form class="forms-sample">
+              <div class="row mb-3">
+                <div class="col-md-4 mt-3">
+                  <label for="livreur" class="form-label">Livreur *</label>
+                  <select class="form-select form-select-sm mb-3">
+                    <option selected value="Gentil">Gentil</option>
+                    <option value="Méchant">Méchant</option>
+                    <option value="Normal">Normal</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="Total" class="form-label">Total Reçu (TND)*</label>
+                  <input type="number" class="form-control" id="Total"
+                    placeholder="Total Reçu" required>
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="commission" class="form-label">Commission (TND)*</label>
+                  <input type="number" class="form-control" id="commission"
+                    placeholder="Commission" required>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <label for="pourcentagel" class="form-label">Pourcentage
+                    livreur : %</label>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <label for="pourcentagee" class="form-label">Pourcentage
+                    entreprise : %</label>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <label for="pourcentagel" class="form-label">Part
+                    livreur : TND</label>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <label for="pourcentagee" class="form-label">Part
+                    entreprise : TND</label>
+                </div>
+                <div class="col-md-9 mt-3">
+                </div>
+                <div class="col-md-3 mt-3">
+                  <h3>Reçu Net :     TND</h3>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary me-2"
+                (click)="modal.close('by: close icon')">Enregistrer</button>
+              <button class="btn btn-secondary" [swal]="{title: 'Annulation !',
+                text: '', showConfirmButton: false, timer: 3000, icon: 'error'}"
+                (click)="modal.close('by: close icon')">Annuler</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,252 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title"><i class="feather icon-user"></i> Clients</h6>
+    <div *ngIf="nbrclient==0">
+      <div class="row mt-7">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+          <h6>0 Clients&nbsp;&nbsp;&nbsp;&nbsp;<a routerLink="/AjoutClient">Ajouter
+              Client</a></h6>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive" *ngIf="nbrclient>0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Nom Complet</th>
+            <th>Téléphone</th>
+            <th>Adresse Postale</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let c of client">
+          <tr>
+            <th><button type="button" (click)="openXlModal(voirclient)"
+                class="btn btn-primary"><i class="mdi mdi-eye"></i></button>
+              <button type="button" (click)="openXlModal(updateclient)"
+                class="btn btn-primary m-1"><i class="mdi mdi-note-edit"></i></button>
+              <button type="button" (click)="DeleteClient(c.id)" class="btn
+                btn-primary"><i class="mdi mdi-delete-circle"></i></button></th>
+            <td>{{c.NomComplet}}</td>
+            <td>{{c.Telephone}}</td>
+            <td>{{c.AdressePostale}}</td>
+            <td>{{c.TypeClient}}</td>
+          </tr>
+          <ng-template #voirclient let-modal class="border">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <a class="sidebar-brand nobleui-logo">
+                      Menu<span>tium</span>
+                      <h4 class="card-title mt-2"><i class="feather
+                          icon-user"></i>
+                        {{c.NomComplet}}</h4>
+                    </a>
+                    <div class="row mt-2">
+                      <div class="col-md-6 mt-2"><h5>Ajouté par :
+                          {{c.NomAgentTel}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Nom Complet du client :
+                          {{c.NomComplet}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Adresse Postale / Zone :
+                          {{c.AdressePostale}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Numéro Téléphone :
+                          {{c.Telephone}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Sexe : {{c.Sexe}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Caractére :
+                          {{c.caractere}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Nombre de commandes :
+                          {{c.NombreCommande}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Nombre de retours :
+                          {{c.NombreRetour}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Type du client :
+                          {{c.TypeClient}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Appelé ? : {{c.Appele}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Date d'appel :
+                          {{c.DateAppel | date:'longDate'}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Date de Naissance :
+                          {{c.DateNaissance | date:'longDate'}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Profession :
+                          {{c.Proffession}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Email : {{c.Email}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Commentaire :
+                          {{c.Commentaire}}</h5></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #updateclient let-modal class="border">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <a class="sidebar-brand nobleui-logo">
+                      Menu<span>tium</span>
+                      <h4 class="card-title mt-2"><i class="feather
+                          icon-user"></i>
+                        {{c.NomComplet}}</h4>
+                    </a>
+                    <div class="row mt-2">
+                      <form class="forms-sample">
+                        <div class="row mb-3">
+                          <div class="col-md-4 mt-3">
+                            <label for="NomAgentTel" class="form-label">Ajouté
+                              par *</label>
+                            <input type="text" class="form-control"
+                              id="Nom_agent" required
+                              [(ngModel)]="c.NomAgentTel"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="Ajouté par ">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="NomComplet" class="form-label">Nom
+                              Complet du Client *</label>
+                            <input type="text" class="form-control"
+                              id="NomComplet" required
+                              [(ngModel)]="c.NomComplet"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="Nom Complet du Client *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="AdressePostale" class="form-label">Adresse
+                              Postale / Zone *</label>
+                            <input type="text" class="form-control"
+                              id="AdressePostale" required
+                              [(ngModel)]="c.AdressePostale"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="Adresse Postale / Zone *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="NTel" class="form-label">N° Téléphone
+                              *</label>
+                            <input type="number" class="form-control"
+                              id="NTel"
+                              required [(ngModel)]="c.Telephone"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="N° Téléphone *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="Sexe" class="form-label">Sexe *</label>
+                            <select class="form-select form-select-sm mb-3"
+                              [(ngModel)]="c.Sexe"
+                              [ngModelOptions]="{standalone: true}">
+                              <option selected value="Homme">Homme</option>
+                              <option value="Femme">Femme</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="NCommande" class="form-label">Nombre
+                              de
+                              commandes *</label>
+                            <input type="number" class="form-control"
+                              id="NCommande" required
+                              [(ngModel)]="c.NombreCommande"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="N° de commandes *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="NRetour" class="form-label">Nombre de
+                              retours *</label>
+                            <input type="number" class="form-control"
+                              id="NRetour" required
+                              [(ngModel)]="c.NombreRetour"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="N° de retours *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="TypeClient" class="form-label">Type du
+                              client *</label>
+                            <select class="form-select form-select-sm mb-3"
+                              [(ngModel)]="c.TypeClient"
+                              [ngModelOptions]="{standalone: true}">
+                              <option selected value="Fidéle">Fidéle</option>
+                              <option value="Moyen">Moyen</option>
+                              <option value="Nouveau">Nouveau</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="caractere" class="form-label">Caractère
+                              du client *</label>
+                            <select class="form-select form-select-sm mb-3"
+                              [(ngModel)]="c.caractere"
+                              [ngModelOptions]="{standalone: true}">
+                              <option selected value="Gentil">Gentil</option>
+                              <option value="Méchant">Méchant</option>
+                              <option value="Normal">Normal</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="appelle" class="form-label">Appelé *</label>
+                            <select class="form-select form-select-sm mb-3"
+                              (change)="SetDateAppel($event,c)"
+                              [(ngModel)]="c.Appele"
+                              [ngModelOptions]="{standalone: true}">
+                              <option selected value="Non">Non</option>
+                              <option value="Oui">Oui</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mt-3"
+                            [hidden]="c.Appele=='Non'">
+                            <label for="Dateappel" class="form-label">Date
+                              d'Appel</label>
+                            <input type="date" class="form-control"
+                              id="Dateappel" required
+                              [(ngModel)]="c.DateAppel"
+                              [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="Datenaissance" class="form-label">Date
+                              de Naissance</label>
+                            <input type="date" class="form-control"
+                              id="Datenaissanc" required
+                              [(ngModel)]="c.DateNaissance"
+                              [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="profession" class="form-label">Profession</label>
+                            <input type="text" class="form-control"
+                              id="profession" required
+                              placeholder="Profession"
+                              [(ngModel)]="c.Proffession"
+                              [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control"
+                              id="email"
+                              required
+                              placeholder="Email"[(ngModel)]="c.Email"
+                              [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="commentaire" class="form-label">Commentaire</label>
+                            <textarea class="form-control" id="commentaire"
+                              required placeholder="Commentaire"
+                              [(ngModel)]="c.Commentaire"
+                              [ngModelOptions]="{standalone: true}"></textarea>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary me-2"
+                          (click)=" UpdateClien(c)" (click)="modal.close('by:
+                          close icon')">Enregistrer</button>
+                        <button class="btn btn-secondary" [swal]="{title:
+                          'Annulation !', text: '', showConfirmButton: false,
+                          timer: 3000, icon: 'error'}"
+                          (click)="modal.close('by:
+                          close icon')">Annuler</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+  </div>

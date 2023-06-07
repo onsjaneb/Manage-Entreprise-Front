@@ -1,0 +1,244 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title"><i class="feather icon-truck"></i> Livreur</h6>
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary me-2"
+          (click)="openXlModal(addlivreur)"><i class="feather icon-plus"></i>
+          Ajouter Livreur</button>
+      </div>
+    </div>
+    <div *ngIf="nbrliv==0">
+      <div class="row mt-7">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+          <h6>0 Livreurs</h6>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive mt-1" *ngIf="nbrliv>0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Nom Complet</th>
+            <th>Téléphone</th>
+            <th>Adresse Postale</th>
+            <th>Type</th>
+            <th>Pourcentage</th>
+            <th>Date Ajout</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let l of liv">
+          <tr>
+            <td><button type="button"
+                class="btn btn-primary" (click)="openXlModal(voirlivreur)"><i
+                  class="mdi mdi-eye"></i></button>
+              <button type="button"
+                class="btn btn-primary m-1"
+                (click)="openXlModal(updatelivreur)"><i class="mdi
+                  mdi-note-edit"></i></button>
+              <button type="button" class="btn
+                btn-primary" (click)="DeleteLivreur(l.id)"><i class="mdi
+                  mdi-delete-circle"></i></button></td>
+            <td>{{l.NomComplet}}</td>
+            <td>{{l.Telephone}}</td>
+            <td>{{l.AdressePostale}}</td>
+            <td>{{l.Type}}</td>
+            <td>{{l.Pourcentage}}&nbsp;%</td>
+            <td>{{l.DateAjout | date:'longDate'}}</td>
+          </tr>
+          <ng-template #voirlivreur let-modal class="border">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <a class="sidebar-brand nobleui-logo">
+                      Menu<span>tium</span>
+                      <h4 class="card-title mt-2"><i class="feather
+                          icon-truck"></i>
+                        {{l.NomComplet}}</h4>
+                    </a>
+                    <div class="row mt-2">
+                      <div class="col-md-6 mt-2"><h5>Nom Complet:
+                          {{l.NomComplet}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Adresse Postale / Zone :
+                          {{l.AdressePostale}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Numéro Téléphone :
+                          {{l.Telephone}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Type :
+                          {{l.Type}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Porcentage :
+                          {{l.Pourcentage}}&nbsp;&nbsp;%</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Date ajout :
+                          {{l.DateAjout | date:'longDate'}}</h5></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #updatelivreur let-modal class="border">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <a class="sidebar-brand nobleui-logo">
+                      Menu<span>tium</span>
+                      <h4 class="card-title mt-2"><i class="feather
+                          icon-user"></i>
+                        {{l.NomComplet}}</h4>
+                    </a>
+                    <div class="row mt-2">
+                      <form class="forms-sample">
+                        <div class="row mb-3">
+                          <div class="col-md-4 mt-3">
+                            <label for="NomComplet" class="form-label">Nom
+                              Complet *</label>
+                            <input type="text" class="form-control"
+                              id="NomComplet" required
+                              [(ngModel)]="l.NomComplet"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="Nom Complet *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="NTel" class="form-label">N° Téléphone
+                              *</label>
+                            <input type="number" class="form-control"
+                              id="NTel"
+                              required [(ngModel)]="l.Telephone"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="N° Téléphone *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="AdressePostale" class="form-label">Adresse
+                              Postale / Zone *</label>
+                            <input type="text" class="form-control"
+                              id="AdressePostale" required
+                              [(ngModel)]="l.AdressePostale"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="Adresse Postale / Zone *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="Type" class="form-label">Type *</label>
+                            <select class="form-select form-select-sm mb-3"
+                              required
+                              [(ngModel)]="l.Type"
+                              [ngModelOptions]="{standalone:
+                              true}">
+                              <option selected value="Moto">Moto</option>
+                              <option value="Voiture">Voiture</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="pourcentage" class="form-label">Pourcentage
+                              *</label>
+                            <input type="text" class="form-control"
+                              id="pourcentage" required
+                              [(ngModel)]="l.Pourcentage"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="Pourcentage">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="dateajout" class="form-label">Date Ajout
+                              *</label>
+                            <input type="date" class="form-control"
+                              id="dateajout" required
+                              [(ngModel)]="l.DateAjout"
+                              [ngModelOptions]="{standalone: true}">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary me-2"
+                          (click)=" Updatelivreur(l)" [disabled]="true" (click)="modal.close('by:
+                          close icon')">Enregistrer</button>
+                        <button class="btn btn-secondary" [swal]="{title:
+                          'Annulation !', text: '', showConfirmButton: false,
+                          timer: 3000, icon: 'error'}"
+                          (click)="modal.close('by:
+                          close icon')">Annuler</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #addlivreur let-modal class="border">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <a class="sidebar-brand nobleui-logo">
+            Menu<span>tium</span>
+            <h4 class="card-title mt-2"><i class="feather icon-truck"></i>
+              Ajouter
+              Livreur</h4>
+          </a>
+          <div class="row mt-2">
+            <form class="forms-sample" (ngSubmit)="AddLivreur()">
+              <div class="row mb-3">
+                <div class="col-md-4 mt-3">
+                  <label for="Nom Complet" class="form-label">Nom Complet *</label>
+                  <input type="text" class="form-control" id="NomComplet"
+                    placeholder="Nom Complet" required
+                    [(ngModel)]="Livreur.NomComplet"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="Telephone" class="form-label">Téléphone *</label>
+                  <input type="text" class="form-control" id="Telephone"
+                    placeholder="N° téléphone" required
+                    [(ngModel)]="Livreur.Telephone"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="Adresse postale" class="form-label">Adresse
+                    postale *</label>
+                  <input type="text" class="form-control" id="adressepostale"
+                    placeholder="Adresse postale" required
+                    [(ngModel)]="Livreur.AdressePostale"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="Type" class="form-label">Type *</label>
+                  <select class="form-select form-select-sm mb-3" required
+                    [(ngModel)]="Livreur.Type" [ngModelOptions]="{standalone:
+                    true}">
+                    <option selected value="Moto">Moto</option>
+                    <option value="Voiture">Voiture</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="pourcentage" class="form-label">Pourcentage (%) *</label>
+                  <input type="number" class="form-control" id="pourcentage"
+                    placeholder="Pourcentage" required
+                    [(ngModel)]="Livreur.Pourcentage"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="dateajout" class="form-label">Ajouté le *</label>
+                  <input type="date" class="form-control" id="dateajout"
+                    required [(ngModel)]="Livreur.DateAjout"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary me-2"
+                (click)="modal.close('by: close icon')">Enregistrer</button>
+              <button class="btn btn-secondary" [swal]="{title: 'Annulation !',
+                text: '', showConfirmButton: false, timer: 3000, icon: 'error'}"
+                (click)="modal.close('by: close icon')">Annuler</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
