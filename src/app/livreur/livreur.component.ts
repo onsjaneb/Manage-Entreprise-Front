@@ -14,6 +14,9 @@ export class LivreurComponent implements OnInit {
   response: any;
   liv: any;
   nbrliv: any;
+  Page: number = 1;
+  TableSize: number = 5;
+  Count: number = 0;
   constructor(
     private modalService: NgbModal,
     private clientservice: ClientService
@@ -113,5 +116,9 @@ export class LivreurComponent implements OnInit {
         });
       }
     });
+  }
+  OnTableDataChange(event: any) {
+    this.Page = event;
+    this.GetLivreurs();
   }
 }

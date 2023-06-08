@@ -4,7 +4,7 @@ import { RecuModel } from '../model/Client.model';
 import { ClientService } from '../services/client.service';
 import { formatDate } from '@angular/common';
 import Swal from 'sweetalert2';
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-caisse-principale',
   templateUrl: './caisse-principale.component.html',
@@ -24,12 +24,19 @@ export class CaissePrincipaleComponent implements OnInit {
   TotalRetour: any;
   TotalAvance: any;
   NbrLivreur: any;
+  token: any;
+  userData: any;
+  Page: number = 1;
+  TableSize: number = 5;
+  Count: number = 0;
   constructor(
     private modalService: NgbModal,
     private clientservice: ClientService
   ) {}
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('isLoggedin');
+    this.userData = jwt_decode(this.token);
     this.GetLivreur();
     this.GetRcus();
     this.GetStat();
@@ -180,9 +187,14 @@ export class CaissePrincipaleComponent implements OnInit {
     });
     this.clientservice.SumLivreur().subscribe((res) => {
       this.NbrLivreur = res;
-      if (!this.NbrLivreur[0].sum) {
-        this.NbrLivreur[0].sum = 0;
+      console.log(this.NbrLivreur);
+      if (!this.NbrLivreur[0].count) {
+        this.NbrLivreur[0].count = 0;
       }
     });
+  }
+  OnTableDataChange(event: any) {
+    this.Page = event;
+    this.GetRcus();
   }
 }

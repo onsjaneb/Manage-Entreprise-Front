@@ -17,6 +17,7 @@ import { LivreurComponent } from './livreur/livreur.component';
 import { CaissePrincipaleComponent } from './caisse-principale/caisse-principale.component';
 import { CaisseSecondaireComponent } from './caisse-secondaire/caisse-secondaire.component';
 import { UsersComponent } from './users/users.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { UsersComponent } from './users/users.component';
     ReactiveFormsModule,
     FormsModule,
     SweetAlert2Module.forRoot(),
+    NgxPaginationModule,
   ],
   providers: [
     AuthGuard,

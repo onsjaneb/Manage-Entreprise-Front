@@ -29,11 +29,11 @@ const routes: Routes = [
         component: LivreurComponent,
       },
       {
-        path:'Caisse_Secondaire',
+        path:'Caisse_Principale',
         component: CaisseSecondaireComponent,
       },
       {
-        path:'Caisse_Principale',
+        path:'Caisse',
         component: CaissePrincipaleComponent,
       },
       {

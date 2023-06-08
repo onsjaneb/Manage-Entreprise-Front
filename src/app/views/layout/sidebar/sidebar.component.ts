@@ -1,19 +1,18 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-
 import MetisMenu from 'metismenujs';
-
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
 import { Router, NavigationEnd } from '@angular/router';
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
-
+token:any;
+userData:any;
   @ViewChild('sidebarToggler') sidebarToggler: ElementRef;
 
   menuItems: MenuItem[] = [];
@@ -37,6 +36,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       this.iconSidebar;
     });
     this.iconSidebar(desktopMedium);
+    this.token = localStorage.getItem('isLoggedin');
+    this.userData=jwt_decode(this.token);
   }
 
   ngAfterViewInit() {

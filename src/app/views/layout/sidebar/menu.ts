@@ -21,14 +21,14 @@ export const MENU: MenuItem[] = [
     link: '/Livreur',
   },
   {
+    label:'Caisse',
+    icon:'codepen',
+    link:'/Caisse',
+  },
+  {
     label:'Caisse Principale',
     icon:'codepen',
     link:'/Caisse_Principale',
-  },
-  {
-    label:'Caisse',
-    icon:'codepen',
-    link:'/Caisse_Secondaire',
   },
   {
     label:'Personnels',

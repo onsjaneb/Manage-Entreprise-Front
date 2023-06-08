@@ -56,14 +56,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('isLoggedin', this.token);
         if (localStorage.getItem('isLoggedin')) {
           this.userData=jwt_decode(this.token);
-          if (this.userData.Role=='Administrateur'){
-            this.router.navigate(['/']);
+          if (this.userData.Role=='Super Admin'){
+            this.router.navigate(['/Caisse']);
           }
           else if (this.userData.Role=='Gérant'){
-            this.router.navigate(['/Caisse_Secondaire']);
+            this.router.navigate(['/Caisse']);
           }
           else if (this.userData.Role=='Assistant'){
-            this.router.navigate(['/Clients']);
+            this.router.navigate(['/']);
           }
           else{}
         }
