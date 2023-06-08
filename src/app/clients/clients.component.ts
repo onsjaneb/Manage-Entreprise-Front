@@ -12,6 +12,9 @@ export class ClientsComponent implements OnInit {
   client: any;
   response: any;
   nbrclient: any;
+  Page: number = 1;
+  TableSize: number = 5;
+  Count: number = 0;
   constructor(
     private clientservice: ClientService,
     private modalService: NgbModal
@@ -67,5 +70,9 @@ export class ClientsComponent implements OnInit {
         icon: 'success',
       });
     });
+  }
+  OnTableDataChange(event: any) {
+    this.Page = event;
+    this.GetClients();
   }
 }

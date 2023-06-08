@@ -14,6 +14,9 @@ export class UsersComponent implements OnInit {
   users: any;
   response: any;
   nbru: any;
+  Page: number = 1;
+  TableSize: number = 5;
+  Count: number = 0;
   constructor(
     private modalService: NgbModal,
     private clientservice: ClientService
@@ -103,5 +106,9 @@ export class UsersComponent implements OnInit {
       });
       this.GetUsers();
     });
+  }
+  OnTableDataChange(event: any) {
+    this.Page = event;
+    this.GetUsers();
   }
 }
