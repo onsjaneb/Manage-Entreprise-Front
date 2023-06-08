@@ -1,7 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <h6 class="card-title"><i class="feather icon-codepen"></i> Caisse
-      Principale</h6>
+    <h6 class="card-title"><i class="feather icon-codepen"></i> Caisse</h6>
     <div class="row">
       <div class="col-md-10">
       </div>
@@ -83,7 +82,7 @@
         </div>
         <div class="col-md-4 mt-3">
           <button class="btn btn-primary me-2"
-            [hidden]="userData.Role!='Super Admin'"><i
+            [hidden]="userData.Role!='Super Admin' || nbrValidation>0" (click)="ValidateCaisse()"><i
               class="feather icon-check"></i>
             Valider Caisse</button>
         </div>

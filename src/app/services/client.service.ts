@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
+  CaisseModel,
   ClientModel,
   LivreurModel,
   RecuModel,
   UsersModel,
+  Validation,
 } from '../model/Client.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -158,6 +160,72 @@ export class ClientService {
   SumLivreur(): Observable<any> {
     const headers = new HttpHeaders();
     return this.http.get(environment.apiurl + '/SumLivreur', {
+      headers: headers,
+    });
+  }
+  AddCaisse(data: CaisseModel) {
+    const headers = new HttpHeaders();
+    return this.http.post(environment.apiurl + '/CreateCaisse', data, {
+      headers: headers,
+    });
+  }
+  GetCaisse(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/Caisses', {
+      headers: headers,
+    });
+  }
+  AddValidation(data: Validation) {
+    const headers = new HttpHeaders();
+    return this.http.post(environment.apiurl + '/CreateValidation', data, {
+      headers: headers,
+    });
+  }
+  GetValidation(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/Validation', {
+      headers: headers,
+    });
+  }
+  Getstats() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/StatsC', {
+      headers: headers,
+    });
+  }
+  Getstats1() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/StatsC1', {
+      headers: headers,
+    });
+  }
+  Getstats2() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/StatsC2', {
+      headers: headers,
+    });
+  }
+  Getstats3() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/StatsC3', {
+      headers: headers,
+    });
+  }
+  Getstats4() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/StatsC4', {
+      headers: headers,
+    });
+  }
+  Getstats5() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/StatsC5', {
+      headers: headers,
+    });
+  }
+  Getstats6() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/StatsC6', {
       headers: headers,
     });
   }

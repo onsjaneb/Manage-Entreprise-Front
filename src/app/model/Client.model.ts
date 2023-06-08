@@ -51,3 +51,20 @@ export class RecuModel {
   Retour: any;
   Statut: any;
 }
+export class CaisseModel {
+  id: any;
+  NBRLivreur: any;
+  Totalrecu: any;
+  Commission: any;
+  Partlivreur: any;
+  PartEntreprise: any;
+  RecuNet: any;
+  DateAjout: any;
+  Avance: any;
+  Retour: any;
+}
+export class Validation {
+  id: any;
+  DateAjout: any;
+  Validation: any;
+}

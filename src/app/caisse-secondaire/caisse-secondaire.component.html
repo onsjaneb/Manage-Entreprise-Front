@@ -1,16 +1,88 @@
 <div class="card">
   <div class="card-body">
-    <h6 class="card-title"><i class="feather icon-codepen"></i> Caisse</h6>
+    <h6 class="card-title"><i class="feather icon-codepen"></i> Caisse
+      Principale</h6>
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-4"></div>
+      <div class="col-md-5"><h3>Totales pour ce mois</h3></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats">
+            <h3>Reçu totale : {{t.sum}} TND</h3>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary me-2"><i class="feather
-            icon-plus"></i>
-          Ajouter prélévement</button>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats3">
+            <h3>Commissions : {{t.sum}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats5">
+            <h3>Avances : {{t.sum}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats6">
+            <h3>Retours : {{t.sum}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats2">
+            <h3>Parts Entreprise : {{t.sum}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats1">
+            <h3>Parts Livreur : {{t.sum}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats4">
+            <h3>Reçus Net : {{t.sum}} TND</h3>
+          </div>
+        </div>
       </div>
     </div>
-    <div>
+    <div class="table-responsive mt-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Nombre Livreurs</th>
+            <th>Reçu Totale</th>
+            <th>Commission</th>
+            <th>Part Entreprise</th>
+            <th>Part Livreur</th>
+            <th>Avance</th>
+            <th>Retour</th>
+            <th>Net Reçu</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let c of caisse">
+          <td>{{c.DateAjout | date:'longDate'}}</td>
+          <td>{{c.NBRLivreur}} Livreurs</td>
+          <td>{{c.Totalrecu}} TND</td>
+          <td>{{c.Commission}} TND</td>
+          <td>{{c.PartEntreprise}} TND</td>
+          <td>{{c.Partlivreur}} TND</td>
+          <td>{{c.Avance}} TND</td>
+          <td>{{c.Retour}} TND</td>
+          <td>{{c.RecuNet}} TND</td>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
