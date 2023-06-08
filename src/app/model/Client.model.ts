@@ -25,16 +25,29 @@ export class LivreurModel {
   Pourcentage: any;
   DateAjout: any;
 }
-
 export class UsersModel {
-  id:any;
-  NomUser:any;
-  PrenomUser:any;
-  Utilisateur:any;
-  Login:any;
-  Email:any;
-  Telephone:any;
-  DateAjout:any;
-  Role:any;
-  Swal: any;
- }
+  id: any;
+  NomUser: any;
+  PrenomUser: any;
+  Utilisateur: any;
+  Login: any;
+  Email: any;
+  Telephone: any;
+  DateAjout: any;
+  Role: any;
+}
+export class RecuModel {
+  id: any;
+  Livreur: any;
+  Totalrecu: any;
+  Commission: any;
+  PLivreur: any;
+  PEntreprise: any;
+  Partlivreur: any;
+  PartEntreprise: any;
+  RecuNet: any;
+  DateAjout: any;
+  Avance: any;
+  Retour: any;
+  Statut: any;
+}

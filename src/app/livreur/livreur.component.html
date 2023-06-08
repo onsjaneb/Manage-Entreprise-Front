@@ -152,7 +152,9 @@
                           </div>
                         </div>
                         <button type="submit" class="btn btn-primary me-2"
-                          (click)=" Updatelivreur(l)" [disabled]="true" (click)="modal.close('by:
+                          (click)=" Updatelivreur(l)"
+                          [disabled]="!l.NomComplet || !l.Telephone || !l.AdressePostale || !l.Type || !l.Pourcentage || !l.DateAjout"
+                          (click)="modal.close('by:
                           close icon')">Enregistrer</button>
                         <button class="btn btn-secondary" [swal]="{title:
                           'Annulation !', text: '', showConfirmButton: false,

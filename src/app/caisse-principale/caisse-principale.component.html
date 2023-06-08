@@ -12,7 +12,178 @@
           Ajouter reçu</button>
       </div>
     </div>
-    <div>
+    <div *ngIf="nbrrecu==0">
+      <div class="row mt-7">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+          <h6>0 Reçus&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive mt-5" *ngIf="nbrrecu!=0">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body"  *ngFor="let t of TotalRecuTod">
+              <h3>Reçu Totale : {{t.sum}} TND</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body"  *ngFor="let t of TotalCommission">
+              <h3>Commission : {{t.sum}} TND</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body"  *ngFor="let t of TotalAvance">
+              <h3>Avance : {{t.sum}} TND</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body"  *ngFor="let t of TotalRetour">
+              <h3>Retour : {{t.sum}} TND</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="card">
+            <div class="card-body"  *ngFor="let t of TotalPartEntreprise">
+              <h3>Part Entreprise : {{t.sum}} TND</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="card">
+            <div class="card-body"  *ngFor="let t of TotalPartLivreur">
+              <h3>Part Livreur : {{t.sum}} TND</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="card">
+            <div class="card-body"  *ngFor="let t of TotalRecuNet">
+              <h3>Reçu Net : {{t.sum}} TND</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-3">
+        </div>
+        <div class="col-md-4 mt-3">
+          <button class="btn btn-primary me-2"><i class="feather icon-check"></i>
+          Valider Caisse</button>
+        </div>
+        <div class="col-md-4 mt-3">
+        </div>
+      </div>
+      <table class="table mt-5">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Date</th>
+            <th>Livreur</th>
+            <th>Reçu Totale</th>
+            <th>Commission</th>
+            <th>Part Entreprise</th>
+            <th>Avance</th>
+            <th>Retour</th>
+            <th>Part Livreur</th>
+            <th>Net Reçu</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let r of Recus">
+          <tr>
+            <td><button type="button"
+                class="btn btn-primary"><i
+                  class="mdi mdi-eye" (click)="openXlModal(detailrev)"></i></button>
+              <button type="button" class="btn
+            btn-primary m-1" (click)="SupprimerRecu(r.id)"><i class="mdi
+              mdi-delete-circle"></i></button></td>
+            <td>{{r.DateAjout | date:'longDate'}}</td>
+            <td>{{r.Livreur}}</td>
+            <td>{{r.Totalrecu}} TND</td>
+            <td>{{r.Commission}} TND</td>
+            <td>{{r.PartEntreprise}} TND</td>
+            <td>{{r.Avance}} TND</td>
+            <td>{{r.Retour}} TND</td>
+            <td>{{r.Partlivreur}} TND</td>
+            <td>{{r.RecuNet}} TND</td>
+          </tr>
+          <ng-template #detailrev let-modal class="border">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <a class="sidebar-brand nobleui-logo">
+                      Menu<span>tium</span>
+                      <h4 class="card-title mt-2"><i
+                          class="feather icon-credit-card"></i>
+                        Details reçu</h4>
+                    </a>
+                    <div class="row mt-2">
+                      <form class="forms-sample">
+                        <div class="row mb-3">
+                          <div class="col-md-12 mt-3">
+                            <h5>{{Recu.DateAjout| date:'longDate' }}</h5>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="livreur" class="form-label">Livreur :
+                              {{r.Livreur}}</label>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="Total" class="form-label">Total Reçu :
+                              {{r.Totalrecu}} TND</label>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="commission" class="form-label">Commission
+                              : {{r.Commission}} TND</label>
+                          </div>
+                          <div class="col-md-3 mt-3">
+                            <label for="pourcentagel" class="form-label">Pourcentage
+                              livreur : {{r.PLivreur}} %</label>
+                          </div>
+                          <div class="col-md-3 mt-3">
+                            <label for="pourcentagee" class="form-label">Pourcentage
+                              entreprise : {{r.PEntreprise}} %</label>
+                          </div>
+                          <div class="col-md-3 mt-3">
+                            <label for="pourcentagel" class="form-label">Part
+                              livreur : {{r.Partlivreur}} TND</label>
+                          </div>
+                          <div class="col-md-3 mt-3">
+                            <label for="pourcentagee" class="form-label">Part
+                              entreprise : {{r.PartEntreprise}} TND</label>
+                          </div>
+                          <hr class="mt-3">
+                          <div class="col-md-4 mt-3">
+                            <label for="Avance" class="form-label">Avance :
+                              {{r.Avance}} TND</label>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="Retour" class="form-label">Retour :
+                              {{r.Retour}} TND</label>
+                          </div>
+                          <hr class="mt-3">
+                          <div class="col-md-9 mt-3">
+                          </div>
+                          <div class="col-md-3 mt-3">
+                            <h3>Reçu Net : {{r.RecuNet}} TND</h3>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -28,55 +199,84 @@
           </a>
           <p>Noté Bien:</p>
           <ul>
-            <li>Part livreur = (Total reçu - commission) X porcentage livreur </li>
-            <li>Part entreprise = (Total reçu - commission) X porcentage entreprise </li>
+            <li>Part livreur = (Total reçu - commission) X porcentage livreur
+            </li>
+            <li>Part entreprise = (Total reçu - commission) X porcentage
+              entreprise </li>
             <li>Reçu Net = commission + part entreprise </li>
           </ul>
           <div class="row mt-2">
             <form class="forms-sample">
               <div class="row mb-3">
+                <div class="col-md-12 mt-3">
+                  <h5>{{Recu.DateAjout| date:'longDate' }}</h5>
+                </div>
                 <div class="col-md-4 mt-3">
                   <label for="livreur" class="form-label">Livreur *</label>
                   <select class="form-select form-select-sm mb-3">
-                    <option selected value="Gentil">Gentil</option>
-                    <option value="Méchant">Méchant</option>
-                    <option value="Normal">Normal</option>
+                    <option></option>
+                    <option (click)="GetPorcentage(l)" *ngFor="let l of livreur"
+                      value={{l}}>{{l.NomComplet}}</option>
                   </select>
                 </div>
                 <div class="col-md-4 mt-3">
                   <label for="Total" class="form-label">Total Reçu (TND)*</label>
                   <input type="number" class="form-control" id="Total"
+                    [(ngModel)]="Recu.Totalrecu"
+                    [ngModelOptions]="{standalone: true}"
                     placeholder="Total Reçu" required>
                 </div>
                 <div class="col-md-4 mt-3">
                   <label for="commission" class="form-label">Commission (TND)*</label>
                   <input type="number" class="form-control" id="commission"
-                    placeholder="Commission" required>
+                    (change)="Calul()"
+                    placeholder="Commission" [(ngModel)]="Recu.Commission"
+                    [ngModelOptions]="{standalone: true}" required>
                 </div>
                 <div class="col-md-3 mt-3">
                   <label for="pourcentagel" class="form-label">Pourcentage
-                    livreur : %</label>
+                    livreur : {{Recu.PLivreur}} %</label>
                 </div>
                 <div class="col-md-3 mt-3">
                   <label for="pourcentagee" class="form-label">Pourcentage
-                    entreprise : %</label>
+                    entreprise : {{Recu.PEntreprise}} %</label>
                 </div>
                 <div class="col-md-3 mt-3">
                   <label for="pourcentagel" class="form-label">Part
-                    livreur : TND</label>
+                    livreur : {{Recu.Partlivreur}} TND</label>
                 </div>
                 <div class="col-md-3 mt-3">
                   <label for="pourcentagee" class="form-label">Part
-                    entreprise : TND</label>
+                    entreprise : {{Recu.PartEntreprise}} TND</label>
                 </div>
+                <hr class="mt-3">
+                <div class="col-md-4 mt-3">
+                  <label for="Avance" class="form-label">Avance (TND)</label>
+                  <input type="number" class="form-control" id="Avance"
+                    placeholder="Avance" [(ngModel)]="Recu.Avance"
+                    [ngModelOptions]="{standalone: true}" required>
+                </div>
+                <div class="col-md-3 mt-5">
+                  <button class="btn btn-primary me-2"
+                    (click)="CaluclueAvance()">Calculer</button>
+                </div>
+                <div class="col-md-5 mt-3">
+                  <label for="Retour" class="form-label">Retour (TND)</label>
+                  <input type="number" class="form-control" id="Retour"
+                    placeholder="Retour" [(ngModel)]="Recu.Retour"
+                    [ngModelOptions]="{standalone: true}" required>
+                </div>
+                <hr class="mt-3">
                 <div class="col-md-9 mt-3">
                 </div>
                 <div class="col-md-3 mt-3">
-                  <h3>Reçu Net :     TND</h3>
+                  <h3>Reçu Net : {{Recu.RecuNet}} TND</h3>
                 </div>
               </div>
               <button type="submit" class="btn btn-primary me-2"
-                (click)="modal.close('by: close icon')">Enregistrer</button>
+                (click)="modal.close('by: close icon')"
+                [disabled]="!Recu.Livreur || !Recu.Totalrecu || !Recu.Commission || !Recu.PEntreprise  ||  !Recu.PLivreur || !Recu.RecuNet || !Recu.DateAjout || !Recu.PartEntreprise || !Recu.Partlivreur"
+                (click)="CreateRecu()">Enregistrer</button>
               <button class="btn btn-secondary" [swal]="{title: 'Annulation !',
                 text: '', showConfirmButton: false, timer: 3000, icon: 'error'}"
                 (click)="modal.close('by: close icon')">Annuler</button>

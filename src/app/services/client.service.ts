@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ClientModel, LivreurModel, UsersModel } from '../model/Client.model';
+import {
+  ClientModel,
+  LivreurModel,
+  RecuModel,
+  UsersModel,
+} from '../model/Client.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -81,6 +86,78 @@ export class ClientService {
   LoginAuth(data: any) {
     const headers = new HttpHeaders();
     return this.http.post(environment.apiurl + '/LoginAuth', data, {
+      headers: headers,
+    });
+  }
+  AddRecu(data: RecuModel) {
+    const headers = new HttpHeaders();
+    return this.http.post(environment.apiurl + '/AddRecu', data, {
+      headers: headers,
+    });
+  }
+  GetRecu(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/Recus', {
+      headers: headers,
+    });
+  }
+  updateRecu(id: any, data: RecuModel) {
+    const headers = new HttpHeaders();
+    return this.http.put(environment.apiurl + '/UpdateRecu/' + id, data, {
+      headers: headers,
+    });
+  }
+  DeleteRecu(id: any) {
+    const headers = new HttpHeaders();
+    return this.http.delete(environment.apiurl + '/DeleteRecu/' + id, {
+      headers: headers,
+    });
+  }
+  ToatlRecuTod(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/TotalRecuTod', {
+      headers: headers,
+    });
+  }
+  SumCommission(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/SumCommission', {
+      headers: headers,
+    });
+  }
+  SumPartLivreur(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/SumPartLivreur', {
+      headers: headers,
+    });
+  }
+  SumPartEntreprise(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/SumPartEntreprise', {
+      headers: headers,
+    });
+  }
+  SumRecuNet(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/SumRecuNet', {
+      headers: headers,
+    });
+  }
+  SumRetour(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/SumRetour', {
+      headers: headers,
+    });
+  }
+  SumAvance(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/SumAvance', {
+      headers: headers,
+    });
+  }
+  SumLivreur(): Observable<any> {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/SumLivreur', {
       headers: headers,
     });
   }
