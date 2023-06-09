@@ -229,4 +229,40 @@ export class ClientService {
       headers: headers,
     });
   }
+  GetClientFidele() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/ClientFidele', {
+      headers: headers,
+    });
+  }
+  GetClientMoyen() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/ClientMoyen', {
+      headers: headers,
+    });
+  }
+  GetClientNouveau() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/ClientNouveau', {
+      headers: headers,
+    });
+  }
+  GetClientGentil() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/ClientGentil', {
+      headers: headers,
+    });
+  }
+  ClientMechant() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/ClientMechant', {
+      headers: headers,
+    });
+  }
+  ClientNormal() {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/ClientNormal', {
+      headers: headers,
+    });
+  }
 }

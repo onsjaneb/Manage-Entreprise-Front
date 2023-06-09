@@ -15,6 +15,13 @@ export class ClientsComponent implements OnInit {
   Page: number = 1;
   TableSize: number = 5;
   Count: number = 0;
+  filter: any;
+  nbrfidele: any;
+  nbrmoyen: any;
+  nbrnouveau: any;
+  nbrgentil: any;
+  nbrmechant: any;
+  nbrnormal: any;
   constructor(
     private clientservice: ClientService,
     private modalService: NgbModal
@@ -27,6 +34,42 @@ export class ClientsComponent implements OnInit {
       this.client = res;
       this.nbrclient = this.client.length;
     });
+  }
+  Getfidele(){
+    this.clientservice.GetClientFidele().subscribe(res=>{
+      this.client=res;
+      this.nbrfidele = this.client.length;
+    })
+  }
+  GetMoyen(){
+    this.clientservice.GetClientMoyen().subscribe(res=>{
+      this.client=res;
+      this.nbrmoyen = this.client.length;
+    })
+  }
+  GetNouveau(){
+    this.clientservice.GetClientNouveau().subscribe(res=>{
+      this.client=res;
+      this.nbrnouveau = this.client.length;
+    })
+  }
+  GetGentil(){
+    this.clientservice.GetClientGentil().subscribe(res=>{
+      this.client=res;
+      this.nbrgentil = this.client.length;
+    })
+  }
+  GetMechant(){
+    this.clientservice.ClientMechant().subscribe(res=>{
+      this.client=res;
+      this.nbrmechant = this.client.length;
+    })
+  }
+  GetNormal(){
+    this.clientservice.ClientNormal().subscribe(res=>{
+      this.client=res;
+      this.nbrnormal = this.client.length;
+    })
   }
   SetDateAppel(event: any, c: ClientModel) {
     c.Appele = event.target.value;

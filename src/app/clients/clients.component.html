@@ -11,8 +11,47 @@
         </div>
       </div>
     </div>
-    <div class="table-responsive" *ngIf="nbrclient>0">
-      <table class="table">
+    <div class="table-responsive mt-5" *ngIf="nbrclient>0">
+      <div class="row">
+        <div class="col-md-4 mt-3">
+          <div class="card">
+            <div class="card-body">
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-3">
+          <div class="card">
+            <div class="card-body">
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-3">
+          <div class="card">
+            <div class="card-body">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button class="btn btn-primary me-2" (click)="Getfidele()">Fidéle</button>
+
+        <button class="btn btn-primary me-2" (click)="GetMoyen()">Moyen</button>
+
+        <button class="btn btn-primary me-2" (click)="GetNouveau()">Nouveau</button>
+
+        <button class="btn btn-secondary me-2" (click)="GetGentil()">Gentil</button>
+
+        <button class="btn btn-secondary me-2" (click)="GetMechant()">Méchant</button>
+
+        <button class="btn btn-secondary me-2" (click)="GetNormal()">Normal</button>
+
+        <button class="btn btn-secondary me-2" (click)=" GetClients()">Tous les
+          Clients</button>
+      </div>
+      <table class="table mt-3">
         <thead>
           <tr>
             <th>Action</th>
@@ -20,6 +59,7 @@
             <th>Téléphone</th>
             <th>Adresse Postale</th>
             <th>Type</th>
+            <th>Caractére</th>
           </tr>
         </thead>
         <tbody *ngFor="let c of client  | paginate:{
@@ -37,6 +77,7 @@
             <td>{{c.Telephone}}</td>
             <td>{{c.AdressePostale}}</td>
             <td>{{c.TypeClient}}</td>
+            <td>{{c.caractere}}</td>
           </tr>
           <ng-template #voirclient let-modal class="border">
             <div class="row">
