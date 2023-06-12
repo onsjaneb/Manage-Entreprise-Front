@@ -9,4 +9,12 @@ export class AppComponent implements OnInit {
   title = 'nobleui-angular';
 
   ngOnInit(): void {}
+  // @HostListener("document:contextmenu", ["$event"])
+  // onContextMenu(event: Event) {
+  //     event.preventDefault();
+  // }
+  // @HostListener("document:keydown.ctrl+shift+i", ["$event"])
+  // onDevTools(event: Event) {
+  //     event.preventDefault();
+  // }
 }

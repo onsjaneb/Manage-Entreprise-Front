@@ -33,6 +33,8 @@ export class CaissePrincipaleComponent implements OnInit {
   Validation = new Validation();
   Validations: any;
   nbrValidation: any;
+  private dateYesterday: Date = new Date();
+
   constructor(
     private modalService: NgbModal,
     private clientservice: ClientService
