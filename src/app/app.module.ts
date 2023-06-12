@@ -18,6 +18,8 @@ import { CaissePrincipaleComponent } from './caisse-principale/caisse-principale
 import { CaisseSecondaireComponent } from './caisse-secondaire/caisse-secondaire.component';
 import { UsersComponent } from './users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ComponentAddFichedepaieComponent } from './component-add-fichedepaie/component-add-fichedepaie.component';
+import { FichedePaieComponent } from './fichede-paie/fichede-paie.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CaissePrincipaleComponent,
     CaisseSecondaireComponent,
     UsersComponent,
+    ComponentAddFichedepaieComponent,
+    FichedePaieComponent,
   ],
   imports: [
     BrowserModule,

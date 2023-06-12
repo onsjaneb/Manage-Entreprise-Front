@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title"><i class="feather icon-file-plus"></i> Ajouter Fiche
+      de paie</h6>
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <label for="Datenaissance" class="form-label">Selectionner Livreur</label>
+        <select class="form-select form-select-sm mb-3">
+          <option selected value></option>
+          <option *ngFor="let l of livreurs"
+            (click)="SelectLivreur(l.NomComplet)">{{l.NomComplet}}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="Datenaissance" class="form-label">De</label>
+        <input type="date" class="form-control" [(ngModel)]="datedebut"
+          [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <div class="col-md-4">
+        <label for="Datenaissance" class="form-label">À</label>
+        <input type="date" class="form-control" [(ngModel)]="datefin"
+          [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-2 mt-3">
+        <button type="submit" (click)="Recherche()"
+          class="btn btn-primary me-2"><i class="feather
+            icon-search"></i>
+          Recherche</button>
+      </div>
+    </div>
+    <div class="table-responsive mt-5">
+      <table class="table mt-5">
+        <thead>
+          <tr>
+            <th>Date Livraison</th>
+            <th>Livreur</th>
+            <th>Frais Livraison</th>
+            <th>Commission</th>
+            <th>Total Reçu</th>
+            <th>Part Entreprise</th>
+            <th>Part Livreur</th>
+            <th>Avance</th>
+            <th>Retour</th>
+            <th>Reçu Net</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let r of recus">
+          <tr>
+            <td class="liv">{{r.DateCompta| date:'longDate'}}</td>
+            <td class="liv">{{r.Livreur}} TND</td>
+            <td class="liv">{{r.Fraislivraison}} TND</td>
+            <td>{{r.Commission}} TND</td>
+            <td>{{r.Totalrecu}} TND</td>
+            <td>{{r.PartEntreprise}} TND</td>
+            <td class="liv">{{r.Partlivreur}} TND</td>
+            <td class="liv">{{r.Avance}} TND</td>
+            <td class="liv">{{r.Retour}} TND</td>
+            <td>{{r.RecuNet}} TND</td>
+            <tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>

@@ -265,4 +265,19 @@ export class ClientService {
       headers: headers,
     });
   }
+  RecuFiche(Livreur: any, Datedebut: any, Datefin: any) {
+    const headers = new HttpHeaders();
+    return this.http.get(
+      environment.apiurl +
+        '/RecuFiche/' +
+        Livreur +
+        '/' +
+        Datedebut +
+        '/' +
+        Datefin,
+      {
+        headers: headers,
+      }
+    );
+  }
 }

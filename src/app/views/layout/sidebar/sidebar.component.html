@@ -16,7 +16,7 @@
       <ng-container *ngFor="let item of menuItems">
         <li class="nav-item nav-category" *ngIf="item.isTitle">{{ item.label }}</li>
         <li class="nav-item" *ngIf="!item.isTitle"
-          [hidden]="item.label=='Accueil' && userData.Role=='Gérant' || item.label=='Clients'&& userData.Role=='Gérant' || item.label=='Ajouter Client'&& userData.Role=='Gérant' || item.label=='Livreur'&& userData.Role=='Assistant' || item.label=='Caisse'&& userData.Role=='Assistant' || item.label=='Caisse Principale'&& userData.Role!='Super Admin' || item.label=='Personnels'&& userData.Role!='Super Admin' ">
+          [hidden]="item.label=='Clients'&& userData.Role=='Gérant' || item.label=='Ajouter Client'&& userData.Role=='Gérant' || item.label=='Livreur'&& userData.Role!='Super Admin' || item.label=='Caisse'&& userData.Role=='Assistant' || item.label=='Caisse Principale'&& userData.Role!='Super Admin' || item.label=='Personnels'&& userData.Role!='Super Admin' ">
           <a class="nav-link" *ngIf="hasItems(item)" href="javascript:void(0);">
             <i class="link-icon" [attr.data-feather]="item.icon" appFeatherIcon
               *ngIf="item.icon"></i>

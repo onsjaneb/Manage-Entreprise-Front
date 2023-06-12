@@ -26,6 +26,16 @@ export const MENU: MenuItem[] = [
     link:'/Caisse_Principale',
   },
   {
+    label:'Ajouter fiche de paie',
+    icon:'file-plus',
+    link:'/AjouterFicheDePaie',
+  },
+  {
+    label:'Fiche de paie',
+    icon:'file',
+    link:'/FicheDePaie',
+  },
+  {
     label:'Personnels',
     icon:'user',
     link:'/Personnels',

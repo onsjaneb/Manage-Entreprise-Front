@@ -33,8 +33,6 @@ export class CaissePrincipaleComponent implements OnInit {
   Validation = new Validation();
   Validations: any;
   nbrValidation: any;
-  private dateYesterday: Date = new Date();
-
   constructor(
     private modalService: NgbModal,
     private clientservice: ClientService
@@ -75,6 +73,7 @@ export class CaissePrincipaleComponent implements OnInit {
     this.Recu.PEntreprise = 100 - Number(this.Recu.PLivreur);
   }
   Calul() {
+    this.Recu.Totalrecu = this.Recu.Fraislivraison + this.Recu.Commission;
     this.Recu.Partlivreur = (
       ((this.Recu.Totalrecu - this.Recu.Commission) * this.Recu.PLivreur) /
       100

@@ -50,6 +50,8 @@ export class RecuModel {
   Avance: any;
   Retour: any;
   Statut: any;
+  Fraislivraison: any;
+  DateCompta: any;
 }
 export class CaisseModel {
   id: any;
