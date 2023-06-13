@@ -15,6 +15,9 @@ export class CaisseSecondaireComponent implements OnInit {
   stats4: any;
   stats5: any;
   stats6: any;
+  Page: number = 1;
+  TableSize: number = 5;
+  Count: number = 0;
   constructor(private clientservice: ClientService) {}
   ngOnInit(): void {
     this.GetCaisse();
@@ -68,5 +71,9 @@ export class CaisseSecondaireComponent implements OnInit {
     this.clientservice.GetCaisse().subscribe((res) => {
       this.caisse = res;
     });
+  }
+  OnTableDataChange(event: any) {
+    this.Page = event;
+    this.GetCaisse();
   }
 }
