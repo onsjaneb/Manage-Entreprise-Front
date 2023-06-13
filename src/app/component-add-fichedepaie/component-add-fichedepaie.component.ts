@@ -13,10 +13,26 @@ export class ComponentAddFichedepaieComponent implements OnInit {
   datefin: any;
   livreur: any;
   recus: any;
+  nbrrecu: any;
+  avancet: any;
+  parlivreurt: any;
   constructor(private clientservice: ClientService) {}
 
   ngOnInit(): void {
     this.GetLivreur();
+  }
+
+  GetStat() {
+    this.clientservice
+      .AvanceFiche(this.livreur, this.datedebut, this.datefin)
+      .subscribe((res) => {
+        this.avancet = res;
+      });
+    this.clientservice
+      .PartLivreurFiche(this.livreur, this.datedebut, this.datefin)
+      .subscribe((res) => {
+        this.parlivreurt = res;
+      });
   }
 
   GetLivreur() {
@@ -43,8 +59,9 @@ export class ComponentAddFichedepaieComponent implements OnInit {
         .RecuFiche(this.livreur, this.datedebut, this.datefin)
         .subscribe((res) => {
           this.recus = res;
-          console.log(this.recus);
+          this.nbrrecu = this.recus.length;
         });
+      this.GetStat();
     }
   }
 }

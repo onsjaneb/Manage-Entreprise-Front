@@ -9,49 +9,49 @@
       <div class="col-md-3 mt-3">
         <div class="card">
           <div class="card-body" *ngFor="let t of stats">
-            <h3>Reçu totale : {{t.sum}} TND</h3>
+            <h3>Reçu totale : {{t.sum.toFixed(2)}} TND</h3>
           </div>
         </div>
       </div>
       <div class="col-md-3 mt-3">
         <div class="card">
           <div class="card-body" *ngFor="let t of stats3">
-            <h3>Commissions : {{t.sum}} TND</h3>
+            <h3>Commissions : {{t.sum.toFixed(2)}} TND</h3>
           </div>
         </div>
       </div>
       <div class="col-md-3 mt-3">
         <div class="card">
           <div class="card-body" *ngFor="let t of stats5">
-            <h3>Avances : {{t.sum}} TND</h3>
+            <h3>Avances : {{t.sum.toFixed(2)}} TND</h3>
           </div>
         </div>
       </div>
       <div class="col-md-3 mt-3">
         <div class="card">
           <div class="card-body" *ngFor="let t of stats6">
-            <h3>Retours : {{t.sum}} TND</h3>
+            <h3>Retours : {{t.sum.toFixed(2)}} TND</h3>
           </div>
         </div>
       </div>
       <div class="col-md-4 mt-3">
         <div class="card">
           <div class="card-body" *ngFor="let t of stats2">
-            <h3>Parts Entreprise : {{t.sum}} TND</h3>
+            <h3>Parts Entreprise : {{t.sum.toFixed(2)}} TND</h3>
           </div>
         </div>
       </div>
       <div class="col-md-4 mt-3">
         <div class="card">
           <div class="card-body" *ngFor="let t of stats1">
-            <h3>Parts Livreur : {{t.sum}} TND</h3>
+            <h3>Parts Livreur : {{t.sum.toFixed(2)}} TND</h3>
           </div>
         </div>
       </div>
       <div class="col-md-4 mt-3">
         <div class="card">
           <div class="card-body" *ngFor="let t of stats4">
-            <h3>Reçus Net : {{t.sum}} TND</h3>
+            <h3>Reçus Net : {{t.sum.toFixed(2)}} TND</h3>
           </div>
         </div>
       </div>
@@ -74,13 +74,13 @@
         <tbody *ngFor="let c of caisse">
           <td>{{c.DateAjout | date:'longDate'}}</td>
           <td>{{c.NBRLivreur}} Livreurs</td>
-          <td>{{c.Totalrecu}} TND</td>
-          <td>{{c.Commission}} TND</td>
-          <td>{{c.PartEntreprise}} TND</td>
-          <td>{{c.Partlivreur}} TND</td>
-          <td>{{c.Avance}} TND</td>
-          <td>{{c.Retour}} TND</td>
-          <td>{{c.RecuNet}} TND</td>
+          <td>{{c.Totalrecu.toFixed(2)}} TND</td>
+          <td>{{c.Commission.toFixed(2)}} TND</td>
+          <td>{{c.PartEntreprise.toFixed(2)}} TND</td>
+          <td>{{c.Partlivreur.toFixed(2)}} TND</td>
+          <td>{{c.Avance.toFixed(2)}} TND</td>
+          <td>{{c.Retour.toFixed(2)}} TND</td>
+          <td>{{c.RecuNet.toFixed(2)}} TND</td>
         </tbody>
       </table>
     </div>

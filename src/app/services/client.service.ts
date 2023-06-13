@@ -280,4 +280,34 @@ export class ClientService {
       }
     );
   }
+  AvanceFiche(Livreur: any, Datedebut: any, Datefin: any) {
+    const headers = new HttpHeaders();
+    return this.http.get(
+      environment.apiurl +
+        '/AvanceFiche/' +
+        Livreur +
+        '/' +
+        Datedebut +
+        '/' +
+        Datefin,
+      {
+        headers: headers,
+      }
+    );
+  }
+  PartLivreurFiche(Livreur: any, Datedebut: any, Datefin: any) {
+    const headers = new HttpHeaders();
+    return this.http.get(
+      environment.apiurl +
+        '/PartLivreurFiche/' +
+        Livreur +
+        '/' +
+        Datedebut +
+        '/' +
+        Datefin,
+      {
+        headers: headers,
+      }
+    );
+  }
 }

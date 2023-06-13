@@ -73,7 +73,7 @@ export class CaissePrincipaleComponent implements OnInit {
     this.Recu.PEntreprise = 100 - Number(this.Recu.PLivreur);
   }
   Calul() {
-    this.Recu.Totalrecu = this.Recu.Fraislivraison + this.Recu.Commission;
+    this.Recu.Totalrecu = (this.Recu.Fraislivraison + this.Recu.Commission).toFixed(2);
     this.Recu.Partlivreur = (
       ((this.Recu.Totalrecu - this.Recu.Commission) * this.Recu.PLivreur) /
       100

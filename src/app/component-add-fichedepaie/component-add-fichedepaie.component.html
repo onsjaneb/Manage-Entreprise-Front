@@ -32,7 +32,18 @@
           Recherche</button>
       </div>
     </div>
-    <div class="table-responsive mt-5">
+    <div class="row mt-5" *ngIf="nbrrecu==0">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-6">
+         <h6>0 reçus pour {{livreur}} entre {{datedebut}} et {{datefin}}</h6>
+      </div>
+      <div class="col-md-3">
+
+      </div>
+    </div>
+    <div class="table-responsive mt-5" *ngIf="nbrrecu>0">
       <table class="table mt-5">
         <thead>
           <tr>

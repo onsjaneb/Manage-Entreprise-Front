@@ -5,7 +5,7 @@
       <div class="col-md-10">
       </div>
       <div class="col-md-2">
-        <button type="submit" [hidden]="nbrValidation>0"
+        <button type="submit"
           class="btn btn-primary me-2"
           (click)="openXlModal(addprev)"><i class="feather
             icon-plus"></i>
@@ -33,49 +33,49 @@
         <div class="col-md-3">
           <div class="card">
             <div class="card-body" *ngFor="let t of TotalRecuTod">
-              <h3>Reçu Totale : {{t.sum}} TND</h3>
+              <h3>Reçu Totale : {{t.sum.toFixed(2)}} TND</h3>
             </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="card">
             <div class="card-body" *ngFor="let t of TotalCommission">
-              <h3>Commission : {{t.sum}} TND</h3>
+              <h3>Commission : {{t.sum.toFixed(2)}} TND</h3>
             </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="card">
             <div class="card-body" *ngFor="let t of TotalAvance">
-              <h3>Avance : {{t.sum}} TND</h3>
+              <h3>Avance : {{t.sum.toFixed(2)}} TND</h3>
             </div>
           </div>
         </div>
         <div class="col-md-3 mt-2">
           <div class="card">
             <div class="card-body" *ngFor="let t of TotalRetour">
-              <h3>Retour : {{t.sum}} TND</h3>
+              <h3>Retour : {{t.sum.toFixed(2)}} TND</h3>
             </div>
           </div>
         </div>
         <div class="col-md-3 mt-2">
           <div class="card">
             <div class="card-body" *ngFor="let t of TotalPartEntreprise">
-              <h3>Part Entreprise : {{t.sum}} TND</h3>
+              <h3>Part Entreprise : {{t.sum.toFixed(2)}} TND</h3>
             </div>
           </div>
         </div>
         <div class="col-md-3 mt-2">
           <div class="card">
             <div class="card-body" *ngFor="let t of TotalPartLivreur">
-              <h3>Part Livreur : {{t.sum}} TND</h3>
+              <h3>Part Livreur : {{t.sum.toFixed(2)}} TND</h3>
             </div>
           </div>
         </div>
         <div class="col-md-3 mt-2">
           <div class="card">
             <div class="card-body" *ngFor="let t of TotalRecuNet">
-              <h3>Reçu Net : {{t.sum}} TND</h3>
+              <h3>Reçu Net : {{t.sum.toFixed(2)}} TND</h3>
             </div>
           </div>
         </div>
@@ -119,13 +119,13 @@
               mdi-delete-circle"></i></button></td>
             <td>{{r.DateCompta | date:'longDate'}}</td>
             <td>{{r.Livreur}}</td>
-            <td>{{r.Totalrecu}} TND</td>
-            <td>{{r.Commission}} TND</td>
-            <td>{{r.PartEntreprise}} TND</td>
-            <td>{{r.Avance}} TND</td>
-            <td>{{r.Retour}} TND</td>
-            <td>{{r.Partlivreur}} TND</td>
-            <td>{{r.RecuNet}} TND</td>
+            <td>{{r.Totalrecu.toFixed(2)}} TND</td>
+            <td>{{r.Commission.toFixed(2)}} TND</td>
+            <td>{{r.PartEntreprise.toFixed(2)}} TND</td>
+            <td>{{r.Avance.toFixed(2)}} TND</td>
+            <td>{{r.Retour.toFixed(2)}} TND</td>
+            <td>{{r.Partlivreur.toFixed(2)}} TND</td>
+            <td>{{r.RecuNet.toFixed(2)}} TND</td>
           </tr>
           <ng-template #detailrev let-modal class="border">
             <div class="row">
