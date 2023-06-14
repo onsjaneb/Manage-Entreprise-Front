@@ -18,6 +18,7 @@ export class CaisseSecondaireComponent implements OnInit {
   Page: number = 1;
   TableSize: number = 5;
   Count: number = 0;
+  Livraison:any=[];
   constructor(private clientservice: ClientService) {}
   ngOnInit(): void {
     this.GetCaisse();
@@ -70,6 +71,10 @@ export class CaisseSecondaireComponent implements OnInit {
   GetCaisse() {
     this.clientservice.GetCaisse().subscribe((res) => {
       this.caisse = res;
+      for (var i = 0; i <  this.caisse.length; i++) {
+        this.Livraison.push(this.caisse[i].DateCompta,this.caisse[i].Partlivreur,this.caisse[i].Avance);
+      }
+      console.log(this.Livraison);
     });
   }
   OnTableDataChange(event: any) {

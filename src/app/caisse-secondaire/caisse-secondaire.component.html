@@ -75,15 +75,17 @@
           itemsPerPage:TableSize,
           currentPage:Page,
           totalItems:Count }; let i= index">
-          <td>{{c.DateAjout | date:'longDate'}}</td>
-          <td>{{c.NBRLivreur}} Livreurs</td>
-          <td>{{c.Commission.toFixed(2)}} TND</td>
-          <td>{{c.Totalrecu.toFixed(2)}} TND</td>
-          <td>{{c.PartEntreprise.toFixed(2)}} TND</td>
-          <td>{{c.Partlivreur.toFixed(2)}} TND</td>
-          <td>{{c.Avance.toFixed(2)}} TND</td>
-          <td>{{c.Retour.toFixed(2)}} TND</td>
-          <td>{{c.RecuNet.toFixed(2)}} TND</td>
+          <tr>
+            <td>{{c.DateAjout | date:'longDate'}}</td>
+            <td>{{c.NBRLivreur}} Livreurs</td>
+            <td>{{c.Commission.toFixed(2)}} TND</td>
+            <td>{{c.Totalrecu.toFixed(2)}} TND</td>
+            <td>{{c.PartEntreprise.toFixed(2)}} TND</td>
+            <td>{{c.Partlivreur.toFixed(2)}} TND</td>
+            <td>{{c.Avance.toFixed(2)}} TND</td>
+            <td>{{c.Retour.toFixed(2)}} TND</td>
+            <td>{{c.RecuNet.toFixed(2)}} TND</td>
+          </tr>
         </tbody>
       </table>
       <div class="mt-3">

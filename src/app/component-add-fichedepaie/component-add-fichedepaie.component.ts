@@ -16,6 +16,7 @@ export class ComponentAddFichedepaieComponent implements OnInit {
   nbrrecu: any;
   avancet: any;
   parlivreurt: any;
+  Livraison: any = [];
   constructor(private clientservice: ClientService) {}
 
   ngOnInit(): void {
@@ -60,6 +61,14 @@ export class ComponentAddFichedepaieComponent implements OnInit {
         .subscribe((res) => {
           this.recus = res;
           this.nbrrecu = this.recus.length;
+          for (var i = 0; i < this.recus.length; i++) {
+            this.Livraison.push({
+              Date: this.recus[i].DateCompta,
+              PartLivreur: this.recus[i].Partlivreur,
+              Avance: this.recus[i].Avance,
+            });
+          }
+          console.log(this.Livraison);
         });
       this.GetStat();
     }

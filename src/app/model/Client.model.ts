@@ -70,3 +70,15 @@ export class Validation {
   DateAjout: any;
   Validation: any;
 }
+export class FichePaie {
+  id: any;
+  Livreur: any;
+  DateFiche: any;
+  Livraison:any;
+  Retour:any;
+  AbonnementOrange:any;
+  CautionSac:any;
+  LivraisonGratuite:any;
+  MontantBrut:any;
+  MontantNet:any;
+}
