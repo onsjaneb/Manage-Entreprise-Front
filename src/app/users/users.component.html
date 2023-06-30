@@ -44,7 +44,7 @@
                     (click)="openXlModal(updateuser)"><i class="mdi
                       mdi-note-edit"></i></button>
                   <button type="button" class="btn
-                    btn-primary" (click)="deleteUser(u.id)"><i class="mdi
+                    btn-primary" (click)="openXlModal(deleteuser)"><i class="mdi
                       mdi-delete-circle"></i></button></td>
                 <td>{{u.NomUser}}</td>
                 <td>{{u.PrenomUser}}</td>
@@ -81,6 +81,40 @@
                               {{u.DateAjout | date:'longDate'}}</h5></div>
                           <div class="col-md-6 mt-2"><h5>Mot de passe :
                               {{u.Login}}</h5></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template #deleteuser let-modal class="border">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <a class="sidebar-brand nobleui-logo">
+                          Menu<span>tium</span>
+                        </a>
+                        <div class="row mt-2">
+                          <div class="col-md-2"></div>
+                          <div class="col-md-8"><h3>Voulez vous vraiment
+                              supprimer l'accée de {{u.NomUser}}
+                              {{u.PrenomUser}} ?</h3></div>
+                          <div class="col-md-2"></div>
+                          <div class="col-md-4"></div>
+                          <div class="col-md-2 mt-7"> <button
+                              class="btn btn-secondary" [swal]="{title:
+                            'Annulation !', text: '', showConfirmButton:
+                            false,
+                            timer: 3000, icon: 'error'}"
+                              (click)="modal.close('by:
+                            close icon')">Annuler</button></div>
+                          <div class="col-md-2"><button
+                              (click)="deleteUser(u.id)"
+                              (click)="modal.close('by:
+                              close icon')" type="submit"
+                              class="btn btn-primary mt-7">Supprimer</button></div>
+                          <div class="col-md-4"></div>
                         </div>
                       </div>
                     </div>
@@ -156,6 +190,7 @@
                                   true}">
                                   <option selected value="Assistant">Assistant</option>
                                   <option value="Gérant">Gérant</option>
+                                  <option value="Manager">Manager</option>
                                 </select>
                               </div>
                               <div class="col-md-4 mt-3">
@@ -182,7 +217,7 @@
                               </div>
                             </div>
                             <button type="submit" class="btn btn-primary me-2"
-                               (click)="modal.close('by:
+                              (click)="modal.close('by:
                               close icon')">Enregistrer</button>
                             <button class="btn btn-secondary" [swal]="{title:
                               'Annulation !', text: '', showConfirmButton:
@@ -273,6 +308,7 @@
                     true}">
                     <option selected value="Assistant">Assistant</option>
                     <option value="Gérant">Gérant</option>
+                    <option value="Manager">Manager</option>
                   </select>
                 </div>
                 <div class="col-md-4 mt-3">

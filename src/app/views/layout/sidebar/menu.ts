@@ -26,14 +26,19 @@ export const MENU: MenuItem[] = [
     link:'/Caisse_Principale',
   },
   {
-    label:'Ajouter fiche de paie',
-    icon:'file-plus',
-    link:'/AjouterFicheDePaie',
+    label:'Caisse Finale',
+    icon:'codepen',
+    link:'/CaisseFinale',
   },
   {
-    label:'Fiche de paie',
+    label:'Ajouter reçu de paie',
+    icon:'file-plus',
+    link:'/AjouterReçurdepaie',
+  },
+  {
+    label:'Reçu de paie',
     icon:'file',
-    link:'/FicheDePaie',
+    link:'/Reçudepaie',
   },
   {
     label:'Personnels',

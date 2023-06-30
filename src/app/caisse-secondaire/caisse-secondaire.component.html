@@ -2,60 +2,6 @@
   <div class="card-body">
     <h6 class="card-title"><i class="feather icon-codepen"></i> Caisse
       Principale</h6>
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-5"><h3>Totales pour ce mois</h3></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-3 mt-3">
-        <div class="card">
-          <div class="card-body" *ngFor="let t of stats">
-            <h3>Reçu totale : {{t.sum.toFixed(2)}} TND</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mt-3">
-        <div class="card">
-          <div class="card-body" *ngFor="let t of stats3">
-            <h3>Commissions : {{t.sum.toFixed(2)}} TND</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mt-3">
-        <div class="card">
-          <div class="card-body" *ngFor="let t of stats5">
-            <h3>Avances : {{t.sum.toFixed(2)}} TND</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mt-3">
-        <div class="card">
-          <div class="card-body" *ngFor="let t of stats6">
-            <h3>Retours : {{t.sum.toFixed(2)}} TND</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mt-3">
-        <div class="card">
-          <div class="card-body" *ngFor="let t of stats2">
-            <h3>Parts Entreprise : {{t.sum.toFixed(2)}} TND</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mt-3">
-        <div class="card">
-          <div class="card-body" *ngFor="let t of stats1">
-            <h3>Parts Livreur : {{t.sum.toFixed(2)}} TND</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mt-3">
-        <div class="card">
-          <div class="card-body" *ngFor="let t of stats4">
-            <h3>Reçus Net : {{t.sum.toFixed(2)}} TND</h3>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="table-responsive mt-5">
       <table class="table">
         <thead>

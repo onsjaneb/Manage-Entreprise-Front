@@ -11,6 +11,7 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { HasRoleGuard } from './core/Role/Role.guard';
 import { ComponentAddFichedepaieComponent } from './component-add-fichedepaie/component-add-fichedepaie.component';
 import { FichedePaieComponent } from './fichede-paie/fichede-paie.component';
+import { CaissefinaleComponent } from './caissefinale/caissefinale.component';
 const routes: Routes = [
   { path:'auth', loadChildren: () => import('./views/pages/auth/auth.module').then(m => m.AuthModule) },
   {
@@ -39,16 +40,20 @@ const routes: Routes = [
         component: CaissePrincipaleComponent,
       },
       {
-        path:'AjouterFicheDePaie',
+        path:'AjouterReçurdepaie',
         component: ComponentAddFichedepaieComponent,
       },
       {
-        path:'FicheDePaie',
+        path:'Reçudepaie',
         component: FichedePaieComponent,
       },
       {
         path:'Personnels',
         component: UsersComponent,
+      },
+      {
+        path:'CaisseFinale',
+        component: CaissefinaleComponent,
       },
       {
         path: 'Menutium',

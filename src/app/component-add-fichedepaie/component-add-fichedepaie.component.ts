@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import Swal from 'sweetalert2';
+import { FichePaie } from '../model/Client.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-component-add-fichedepaie',
@@ -17,12 +19,14 @@ export class ComponentAddFichedepaieComponent implements OnInit {
   avancet: any;
   parlivreurt: any;
   Livraison: any = [];
-  constructor(private clientservice: ClientService) {}
-
+  fichepaie = new FichePaie();
+  constructor(
+    private clientservice: ClientService,
+    private modalService: NgbModal
+  ) {}
   ngOnInit(): void {
     this.GetLivreur();
   }
-
   GetStat() {
     this.clientservice
       .AvanceFiche(this.livreur, this.datedebut, this.datefin)
@@ -33,19 +37,17 @@ export class ComponentAddFichedepaieComponent implements OnInit {
       .PartLivreurFiche(this.livreur, this.datedebut, this.datefin)
       .subscribe((res) => {
         this.parlivreurt = res;
+        this.fichepaie.MontantBrut = this.parlivreurt[0].sum;
       });
   }
-
   GetLivreur() {
     this.clientservice.GetLivreur().subscribe((res) => {
       this.livreurs = res;
     });
   }
-
   SelectLivreur(l: any) {
     this.livreur = l;
   }
-
   Recherche() {
     if (this.datedebut > this.datefin) {
       Swal.fire({
@@ -68,9 +70,14 @@ export class ComponentAddFichedepaieComponent implements OnInit {
               Avance: this.recus[i].Avance,
             });
           }
-          console.log(this.Livraison);
         });
       this.GetStat();
     }
+  }
+  openXlModal(content: TemplateRef<any>) {
+    this.modalService
+      .open(content, { size: 'xl' })
+      .result.then((result) => {})
+      .catch((res) => {});
   }
 }

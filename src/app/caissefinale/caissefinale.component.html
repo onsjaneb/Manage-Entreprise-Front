@@ -1,0 +1,108 @@
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title"><i class="feather icon-codepen"></i> Caisse Finale</h6>
+    <div class="row">
+      <div class="col-md-10">
+      </div>
+      <div class="col-md-2">
+        <button type="submit"
+          class="btn btn-primary me-2"><i
+            class="feather
+            icon-credit-card"></i>
+          Ajouter dépense</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-4"></div>
+      <div class="col-md-5"><h3>Totales pour ce mois</h3></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats">
+            <h3>Reçu totale : {{t.sum.toFixed(2)}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats3">
+            <h3>Commissions : {{t.sum.toFixed(2)}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats5">
+            <h3>Avances : {{t.sum.toFixed(2)}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats6">
+            <h3>Retours : {{t.sum.toFixed(2)}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats2">
+            <h3>Parts Entreprise : {{t.sum.toFixed(2)}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats1">
+            <h3>Parts Livreur : {{t.sum.toFixed(2)}} TND</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mt-3">
+        <div class="card">
+          <div class="card-body" *ngFor="let t of stats4">
+            <h3>Reçus Net : {{t.sum.toFixed(2)}} TND</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive mt-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Nombre Livreurs</th>
+            <th>Commission</th>
+            <th>Reçu Totale</th>
+            <th>Part Entreprise</th>
+            <th>Part Livreur</th>
+            <th>Avance</th>
+            <th>Retour</th>
+            <th>Net Reçu</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let c of caisse | paginate:{
+          itemsPerPage:TableSize,
+          currentPage:Page,
+          totalItems:Count }; let i= index">
+          <tr>
+            <td>{{c.DateAjout | date:'longDate'}}</td>
+            <td>{{c.NBRLivreur}} Livreurs</td>
+            <td>{{c.Commission.toFixed(2)}} TND</td>
+            <td>{{c.Totalrecu.toFixed(2)}} TND</td>
+            <td>{{c.PartEntreprise.toFixed(2)}} TND</td>
+            <td>{{c.Partlivreur.toFixed(2)}} TND</td>
+            <td>{{c.Avance.toFixed(2)}} TND</td>
+            <td>{{c.Retour.toFixed(2)}} TND</td>
+            <td>{{c.RecuNet.toFixed(2)}} TND</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-3">
+        <pagination-controls previousLabel="Prev" nextLabel="Next"
+          (pageChange)="OnTableDataChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ import { UsersComponent } from './users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ComponentAddFichedepaieComponent } from './component-add-fichedepaie/component-add-fichedepaie.component';
 import { FichedePaieComponent } from './fichede-paie/fichede-paie.component';
+import { CaissefinaleComponent } from './caissefinale/caissefinale.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { FichedePaieComponent } from './fichede-paie/fichede-paie.component';
     UsersComponent,
     ComponentAddFichedepaieComponent,
     FichedePaieComponent,
+    CaissefinaleComponent,
   ],
   imports: [
     BrowserModule,
