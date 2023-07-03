@@ -72,12 +72,12 @@
           <tr>
             <th>Date</th>
             <th>Nombre Livreurs</th>
-            <th>Commission</th>
-            <th>Reçu Totale</th>
-            <th>Part Entreprise</th>
             <th>Part Livreur</th>
             <th>Avance</th>
             <th>Retour</th>
+            <th>Commission</th>
+            <th>Reçu Totale</th>
+            <th>Part Entreprise</th>
             <th>Net Reçu</th>
           </tr>
         </thead>
@@ -88,12 +88,12 @@
           <tr>
             <td>{{c.DateAjout | date:'longDate'}}</td>
             <td>{{c.NBRLivreur}} Livreurs</td>
-            <td>{{c.Commission.toFixed(2)}} TND</td>
-            <td>{{c.Totalrecu.toFixed(2)}} TND</td>
-            <td>{{c.PartEntreprise.toFixed(2)}} TND</td>
             <td>{{c.Partlivreur.toFixed(2)}} TND</td>
             <td>{{c.Avance.toFixed(2)}} TND</td>
             <td>{{c.Retour.toFixed(2)}} TND</td>
+            <td>{{c.Commission.toFixed(2)}} TND</td>
+            <td>{{c.Totalrecu.toFixed(2)}} TND</td>
+            <td>{{c.PartEntreprise.toFixed(2)}} TND</td>
             <td>{{c.RecuNet.toFixed(2)}} TND</td>
           </tr>
         </tbody>
