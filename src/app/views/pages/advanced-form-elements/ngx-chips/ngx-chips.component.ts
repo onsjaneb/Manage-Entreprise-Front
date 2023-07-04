@@ -17,19 +17,15 @@ export class NgxChipsComponent implements OnInit {
   }
 
   onAdd(item: any) {
-    console.log('tag added: value is ' + item.value);
   }
 
   onSelect(item: any) {
-    console.log('tag selected: value is ' + item);
   }
 
   onTagEdited(item: any) {
-    console.log('tag edited: current value is ' + item);    
   }
 
   onTextChange(text: any) {
-    console.log('text changed: value is ' + text);
   }
 
 }

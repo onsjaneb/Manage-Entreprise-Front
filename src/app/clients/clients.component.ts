@@ -22,6 +22,8 @@ export class ClientsComponent implements OnInit {
   nbrgentil: any;
   nbrmechant: any;
   nbrnormal: any;
+  Nomclient: any;
+  TelClient: any;
   constructor(
     private clientservice: ClientService,
     private modalService: NgbModal
@@ -29,47 +31,60 @@ export class ClientsComponent implements OnInit {
   ngOnInit(): void {
     this.GetClients();
   }
+  CheckTelex() {
+    if (!this.TelClient) {
+    } else {
+      this.clientservice.CheckTelExistance(this.TelClient).subscribe((res) => {
+        this.client = res;
+      });
+    }
+  }
+  CheckNameex() {
+    this.clientservice.CheckNameExistance(this.Nomclient).subscribe((res) => {
+      this.client = res;
+    });
+  }
   GetClients() {
     this.clientservice.GetClients().subscribe((res) => {
       this.client = res;
       this.nbrclient = this.client.length;
     });
   }
-  Getfidele(){
-    this.clientservice.GetClientFidele().subscribe(res=>{
-      this.client=res;
+  Getfidele() {
+    this.clientservice.GetClientFidele().subscribe((res) => {
+      this.client = res;
       this.nbrfidele = this.client.length;
-    })
+    });
   }
-  GetMoyen(){
-    this.clientservice.GetClientMoyen().subscribe(res=>{
-      this.client=res;
+  GetMoyen() {
+    this.clientservice.GetClientMoyen().subscribe((res) => {
+      this.client = res;
       this.nbrmoyen = this.client.length;
-    })
+    });
   }
-  GetNouveau(){
-    this.clientservice.GetClientNouveau().subscribe(res=>{
-      this.client=res;
+  GetNouveau() {
+    this.clientservice.GetClientNouveau().subscribe((res) => {
+      this.client = res;
       this.nbrnouveau = this.client.length;
-    })
+    });
   }
-  GetGentil(){
-    this.clientservice.GetClientGentil().subscribe(res=>{
-      this.client=res;
+  GetGentil() {
+    this.clientservice.GetClientGentil().subscribe((res) => {
+      this.client = res;
       this.nbrgentil = this.client.length;
-    })
+    });
   }
-  GetMechant(){
-    this.clientservice.ClientMechant().subscribe(res=>{
-      this.client=res;
+  GetMechant() {
+    this.clientservice.ClientMechant().subscribe((res) => {
+      this.client = res;
       this.nbrmechant = this.client.length;
-    })
+    });
   }
-  GetNormal(){
-    this.clientservice.ClientNormal().subscribe(res=>{
-      this.client=res;
+  GetNormal() {
+    this.clientservice.ClientNormal().subscribe((res) => {
+      this.client = res;
       this.nbrnormal = this.client.length;
-    })
+    });
   }
   SetDateAppel(event: any, c: ClientModel) {
     c.Appele = event.target.value;

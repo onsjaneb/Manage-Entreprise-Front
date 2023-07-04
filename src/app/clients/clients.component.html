@@ -1,6 +1,19 @@
 <div class="card">
   <div class="card-body">
     <h6 class="card-title"><i class="feather icon-user"></i> Clients</h6>
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <input type="number" class="form-control"
+          id="Telephone" [(ngModel)]="TelClient"
+          [ngModelOptions]="{standalone: true}" required
+          placeholder="Rechrche par Téléphone"
+          (change)="CheckTelex()">
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
     <div *ngIf="nbrclient==0">
       <div class="row mt-7">
         <div class="col-md-4">
@@ -49,7 +62,8 @@
                 class="btn btn-primary"><i class="mdi mdi-eye"></i></button>
               <button type="button" (click)="openXlModal(updateclient)"
                 class="btn btn-primary m-1"><i class="mdi mdi-note-edit"></i></button>
-              <button type="button" (click)="openXlModal(deleteclient)" class="btn
+              <button type="button" (click)="openXlModal(deleteclient)"
+                class="btn
                 btn-primary"><i class="mdi mdi-delete-circle"></i></button></th>
             <td>{{c.NomComplet}}</td>
             <td>{{c.Telephone}}</td>
@@ -84,6 +98,8 @@
                           {{c.NombreCommande}}</h5></div>
                       <div class="col-md-6 mt-2"><h5>Nombre de retours :
                           {{c.NombreRetour}}</h5></div>
+                      <div class="col-md-6 mt-2"><h5>Nombre d'annulation :
+                          {{c.Nbrannulation}}</h5></div>
                       <div class="col-md-6 mt-2"><h5>Type du client :
                           {{c.TypeClient}}</h5></div>
                       <div class="col-md-6 mt-2"><h5>Appelé ? : {{c.Appele}}</h5></div>
@@ -212,6 +228,14 @@
                               [(ngModel)]="c.NombreRetour"
                               [ngModelOptions]="{standalone: true}"
                               placeholder="N° de retours *">
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <label for="NAnnulation" class="form-label">Nombre d'annulation</label>
+                            <input type="number" class="form-control"
+                              id="NAnnulation" required
+                              [(ngModel)]="c.Nbrannulation"
+                              [ngModelOptions]="{standalone: true}"
+                              placeholder="Nombre d'annulations">
                           </div>
                           <div class="col-md-4 mt-3">
                             <label for="TypeClient" class="form-label">Type du

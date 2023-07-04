@@ -310,4 +310,16 @@ export class ClientService {
       }
     );
   }
+  CheckNameExistance(NomComplet: any) {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/Checknameex/' + NomComplet, {
+      headers: headers,
+    });
+  }
+  CheckTelExistance(Telephone: any) {
+    const headers = new HttpHeaders();
+    return this.http.get(environment.apiurl + '/Checktelex/' + Telephone, {
+      headers: headers,
+    });
+  }
 }

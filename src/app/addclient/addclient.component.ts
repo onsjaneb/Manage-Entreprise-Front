@@ -12,14 +12,47 @@ export class AddclientComponent implements OnInit {
   appel: any;
   response: any;
   client = new ClientModel();
+  clientName: any;
+  clienttel: any;
   constructor(private clientservice: ClientService, private router: Router) {}
   ngOnInit() {
     this.client.Appele = 'Non';
     this.client.NombreCommande = 0;
     this.client.NombreRetour = 0;
+    this.client.Nbrannulation = 0;
   }
   SetDateAppel(event: any) {
     this.client.Appele = event.target.value;
+  }
+  CheckTelex() {
+    this.clientservice
+      .CheckTelExistance(this.client.Telephone)
+      .subscribe((res) => {
+        this.clienttel = res;
+        this.clienttel[0].NombreCommande =
+          Number(this.clienttel[0].NombreCommande) + 1;
+        this.clientservice
+          .UpdateClient(this.clienttel[0].id, this.clienttel[0])
+          .subscribe((res) => {
+            this.response = res;
+            if (this.response.message == 'Client updated succefully') {
+              Swal.fire({
+                title: 'Client dejà exist !',
+                text: '',
+                showConfirmButton: false,
+                timer: 3000,
+                icon: 'error',
+              });
+            }
+          });
+      });
+  }
+  CheckNameex() {
+    this.clientservice
+      .CheckNameExistance(this.client.NomComplet.toString())
+      .subscribe((res) => {
+        this.clientName = res;
+      });
   }
   AddClient() {
     if (

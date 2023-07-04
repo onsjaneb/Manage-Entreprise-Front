@@ -5,38 +5,66 @@
       <div class="row mb-3">
         <div class="col-md-4 mt-3">
           <label for="NomAgentTel" class="form-label">Ajouté par *</label>
-          <input type="text" class="form-control" id="Nom_agent" required [(ngModel)]="client.NomAgentTel"  [ngModelOptions]="{standalone: true}" placeholder="Ajouté par *">
+          <input type="text" class="form-control" id="Nom_agent" required
+            [(ngModel)]="client.NomAgentTel"
+            [ngModelOptions]="{standalone: true}" placeholder="Ajouté par *">
         </div>
         <div class="col-md-4 mt-3">
           <label for="NomComplet" class="form-label">Nom Complet du Client *</label>
-          <input type="text" class="form-control" id="NomComplet" required [(ngModel)]="client.NomComplet" [ngModelOptions]="{standalone: true}" placeholder="Nom Complet du Client *">
-        </div>
-        <div class="col-md-4 mt-3">
-          <label for="AdressePostale" class="form-label">Adresse Postale / Zone *</label>
-          <input type="text" class="form-control" id="AdressePostale" required  [(ngModel)]="client.AdressePostale" [ngModelOptions]="{standalone: true}" placeholder="Adresse Postale / Zone *">
+          <input type="text" class="form-control" id="NomComplet" required
+            [(ngModel)]="client.NomComplet"
+            [ngModelOptions]="{standalone: true}"
+            placeholder="Nom Complet du Client *">
         </div>
         <div class="col-md-4 mt-3">
           <label for="NTel" class="form-label">N° Téléphone *</label>
-          <input type="number" class="form-control" id="NTel" required [(ngModel)]="client.Telephone" [ngModelOptions]="{standalone: true}" placeholder="N° Téléphone *">
+          <input type="number" class="form-control" id="NTel" required
+            [(ngModel)]="client.Telephone" [ngModelOptions]="{standalone: true}"
+            placeholder="N° Téléphone *"
+            (change)="CheckTelex()">
+        </div>
+        <div class="col-md-4 mt-3">
+          <label for="AdressePostale" class="form-label">Adresse Postale / Zone
+            *</label>
+          <input type="text" class="form-control" id="AdressePostale" required
+            [(ngModel)]="client.AdressePostale"
+            [ngModelOptions]="{standalone: true}"
+            placeholder="Adresse Postale / Zone *">
         </div>
         <div class="col-md-4 mt-3">
           <label for="Sexe" class="form-label">Sexe *</label>
-          <select class="form-select form-select-sm mb-3" [(ngModel)]="client.Sexe" [ngModelOptions]="{standalone: true}">
+          <select class="form-select form-select-sm mb-3"
+            [(ngModel)]="client.Sexe" [ngModelOptions]="{standalone: true}">
             <option selected value="Homme">Homme</option>
             <option value="Femme">Femme</option>
           </select>
         </div>
         <div class="col-md-4 mt-3">
           <label for="NCommande" class="form-label">Nombre de commandes *</label>
-          <input type="number" class="form-control" id="NCommande" required [(ngModel)]="client.NombreCommande" [ngModelOptions]="{standalone: true}" placeholder="N° de commandes *">
+          <input type="number" class="form-control" id="NCommande" required
+            [(ngModel)]="client.NombreCommande"
+            [ngModelOptions]="{standalone: true}"
+            placeholder="N° de commandes *">
         </div>
         <div class="col-md-4 mt-3">
           <label for="NRetour" class="form-label">Nombre de retours *</label>
-          <input type="number" class="form-control" id="NRetour" required [(ngModel)]="client.NombreRetour" [ngModelOptions]="{standalone: true}" placeholder="N° de retours *">
+          <input type="number" class="form-control" id="NRetour" required
+            [(ngModel)]="client.NombreRetour"
+            [ngModelOptions]="{standalone: true}"
+            placeholder="Nombre de retours *">
+        </div>
+        <div class="col-md-4 mt-3">
+          <label for="NAnnulation" class="form-label">Nombre d'annulation</label>
+          <input type="number" class="form-control" id="NAnnulation" required
+            [(ngModel)]="client.Nbrannulation"
+            [ngModelOptions]="{standalone: true}"
+            placeholder="Nombre d'annulations *">
         </div>
         <div class="col-md-4 mt-3">
           <label for="TypeClient" class="form-label">Type du client *</label>
-          <select class="form-select form-select-sm mb-3" [(ngModel)]="client.TypeClient" [ngModelOptions]="{standalone: true}">
+          <select class="form-select form-select-sm mb-3"
+            [(ngModel)]="client.TypeClient"
+            [ngModelOptions]="{standalone: true}">
             <option selected value="Fidéle">Fidéle</option>
             <option value="Moyen">Moyen</option>
             <option value="Nouveau">Nouveau</option>
@@ -44,7 +72,8 @@
         </div>
         <div class="col-md-4 mt-3">
           <label for="caractere" class="form-label">Caractère du client *</label>
-          <select class="form-select form-select-sm mb-3" [(ngModel)]="client.caractere" [ngModelOptions]="{standalone: true}">
+          <select class="form-select form-select-sm mb-3"
+            [(ngModel)]="client.caractere" [ngModelOptions]="{standalone: true}">
             <option selected value="Gentil">Gentil</option>
             <option value="Méchant">Méchant</option>
             <option value="Normal">Normal</option>
@@ -52,35 +81,45 @@
         </div>
         <div class="col-md-4 mt-3">
           <label for="appelle" class="form-label">Appelé *</label>
-          <select class="form-select form-select-sm mb-3" (change)="SetDateAppel($event)" [(ngModel)]="client.Appele" [ngModelOptions]="{standalone: true}">
+          <select class="form-select form-select-sm mb-3"
+            (change)="SetDateAppel($event)" [(ngModel)]="client.Appele"
+            [ngModelOptions]="{standalone: true}">
             <option selected value="Non">Non</option>
             <option value="Oui">Oui</option>
           </select>
         </div>
         <div class="col-md-4 mt-3" [hidden]="client.Appele=='Non'">
           <label for="Dateappel" class="form-label">Date d'Appel *</label>
-          <input type="date" class="form-control" id="Dateappel" required [(ngModel)]="client.DateAppel" [ngModelOptions]="{standalone: true}">
+          <input type="date" class="form-control" id="Dateappel" required
+            [(ngModel)]="client.DateAppel" [ngModelOptions]="{standalone: true}">
         </div>
         <div class="col-md-4 mt-3">
           <label for="Datenaissance" class="form-label">Date de Naissance</label>
-          <input type="date" class="form-control" id="Datenaissanc" required [(ngModel)]="client.DateNaissance" [ngModelOptions]="{standalone: true}">
+          <input type="date" class="form-control" id="Datenaissanc" required
+            [(ngModel)]="client.DateNaissance"
+            [ngModelOptions]="{standalone: true}">
         </div>
         <div class="col-md-4 mt-3">
           <label for="profession" class="form-label">Profession</label>
-          <input type="text" class="form-control" id="profession" required placeholder="Profession" [(ngModel)]="client.Proffession" [ngModelOptions]="{standalone: true}">
+          <input type="text" class="form-control" id="profession" required
+            placeholder="Profession" [(ngModel)]="client.Proffession"
+            [ngModelOptions]="{standalone: true}">
         </div>
         <div class="col-md-4 mt-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" required placeholder="Email"[(ngModel)]="client.Email" [ngModelOptions]="{standalone: true}">
+          <input type="email" class="form-control" id="email" required
+            placeholder="Email" [(ngModel)]="client.Email"
+            [ngModelOptions]="{standalone: true}">
         </div>
         <div class="col-md-4 mt-3">
           <label for="commentaire" class="form-label">Commentaire</label>
-          <textarea class="form-control" id="commentaire" required placeholder="Commentaire" [(ngModel)]="client.Commentaire" [ngModelOptions]="{standalone: true}"></textarea>
+          <textarea class="form-control" id="commentaire" required
+            placeholder="Commentaire" [(ngModel)]="client.Commentaire"
+            [ngModelOptions]="{standalone: true}"></textarea>
         </div>
       </div>
       <button type="submit" class="btn btn-primary me-2">Enregistrer</button>
-      <button class="btn btn-secondary" (click)="Annuler()" >Annuler</button>
+      <button class="btn btn-secondary" (click)="Annuler()">Annuler</button>
     </form>
   </div>
 </div>
-

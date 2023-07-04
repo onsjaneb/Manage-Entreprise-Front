@@ -15,6 +15,7 @@ export class ClientModel {
   Proffession: any;
   Email: any;
   Commentaire: any;
+  Nbrannulation:any;
 }
 export class LivreurModel {
   id: any;

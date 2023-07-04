@@ -6,14 +6,13 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   ngOnInit(): void {}
-  // @HostListener('document:contextmenu', ['$event'])
-  // onContextMenu(event: Event) {
-  //   event.preventDefault();
-  // }
-  // @HostListener('document:keydown.ctrl+shift+i', ['$event'])
-  // onDevTools(event: Event) {
-  //   event.preventDefault();
-  // }
+  @HostListener('document:contextmenu', ['$event'])
+  onContextMenu(event: Event) {
+    event.preventDefault();
+  }
+  @HostListener('document:keydown.ctrl+shift+i', ['$event'])
+  onDevTools(event: Event) {
+    event.preventDefault();
+  }
 }
