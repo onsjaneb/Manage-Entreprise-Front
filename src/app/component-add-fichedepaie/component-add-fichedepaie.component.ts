@@ -3,6 +3,7 @@ import { ClientService } from '../services/client.service';
 import Swal from 'sweetalert2';
 import { FichePaie } from '../model/Client.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-component-add-fichedepaie',
@@ -26,6 +27,15 @@ export class ComponentAddFichedepaieComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.GetLivreur();
+    this.fichepaie.datefiche = formatDate(
+      new Date(),
+      'MMM d, y, h:mm:ss a',
+      'en'
+    );
+    this.fichepaie.retour = 0;
+    this.fichepaie.abonnementorange = 0;
+    this.fichepaie.cautionsac = 0;
+    this.fichepaie.livraisongratuite = 0;
   }
   GetStat() {
     this.clientservice
@@ -37,7 +47,8 @@ export class ComponentAddFichedepaieComponent implements OnInit {
       .PartLivreurFiche(this.livreur, this.datedebut, this.datefin)
       .subscribe((res) => {
         this.parlivreurt = res;
-        this.fichepaie.MontantBrut = this.parlivreurt[0].sum;
+        this.fichepaie.montantbrut = this.parlivreurt[0].sum;
+        this.fichepaie.montantnet = this.parlivreurt[0].sum;
       });
   }
   GetLivreur() {
@@ -70,9 +81,30 @@ export class ComponentAddFichedepaieComponent implements OnInit {
               Avance: this.recus[i].Avance,
             });
           }
+          this.fichepaie.livreur = this.livreur;
         });
       this.GetStat();
     }
+  }
+  Retour() {
+    this.fichepaie.montantnet = (
+      this.fichepaie.montantbrut - this.fichepaie.retour
+    ).toFixed(2);
+  }
+  Abonnement() {
+    this.fichepaie.montantnet = (
+      this.fichepaie.montantbrut - this.fichepaie.abonnementorange
+    ).toFixed(2);
+  }
+  Caution() {
+    this.fichepaie.montantnet = (
+      this.fichepaie.montantbrut - this.fichepaie.cautionsac
+    ).toFixed(2);
+  }
+  LivraisonGratuit() {
+    this.fichepaie.montantnet = (
+      this.fichepaie.montantbrut - this.fichepaie.livraisongratuite
+    ).toFixed(2);
   }
   openXlModal(content: TemplateRef<any>) {
     this.modalService

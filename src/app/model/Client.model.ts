@@ -15,7 +15,7 @@ export class ClientModel {
   Proffession: any;
   Email: any;
   Commentaire: any;
-  Nbrannulation:any;
+  Nbrannulation: any;
 }
 export class LivreurModel {
   id: any;
@@ -73,13 +73,13 @@ export class Validation {
 }
 export class FichePaie {
   id: any;
-  Livreur: any;
-  DateFiche: any;
-  Livraison:any;
-  Retour:any;
-  AbonnementOrange:any;
-  CautionSac:any;
-  LivraisonGratuite:any;
-  MontantBrut:any;
-  MontantNet:any;
+  livreur: any;
+  datefiche: any;
+  livraison: any;
+  retour: any;
+  abonnementorange: any;
+  cautionsac: any;
+  livraisongratuite: any;
+  montantbrut: any;
+  montantnet: any;
 }
