@@ -1,5 +1,69 @@
 <div class="card">
   <div class="card-body">
     <h6 class="card-title"><i class="feather icon-file"></i> Fiche de paies</h6>
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <label for="Date" class="form-label">Selectionner Livreur</label>
+        <select class="form-select form-select-sm mb-3">
+          <option selected value></option>
+          <option *ngFor="let l of livreurs"
+            (click)="SelectLivreur(l.NomComplet)">{{l.NomComplet}}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="Date" class="form-label">De</label>
+        <input type="date" class="form-control" [(ngModel)]="datedebut"
+          [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <div class="col-md-4">
+        <label for="Date" class="form-label">À</label>
+        <input type="date" class="form-control" [(ngModel)]="datefin"
+          [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-2 mt-3">
+        <button type="submit" (click)="Recherche()"
+          class="btn btn-primary me-2"><i class="feather
+            icon-search"></i>
+          Recherche</button>
+      </div>
+    </div>
+    <div class="row mt-5" *ngIf="nbrfiche==0">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <h6>0 fiches pour {{livreur}} entre {{datedebut}} et {{datefin}}</h6>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+    <div class="row mt-5" *ngIf="nbrfiche>0">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Numéro Fiche</th>
+              <th>Date</th>
+              <th>Livreur</th>
+              <th>Montant Brut</th>
+              <th>Montant Net</th>
+            </tr>
+            <tr *ngFor="let f of result">
+              <td><button type="button"
+                  class="btn btn-primary"><i class="mdi mdi-eye"></i></button></td>
+              <td>{{f.id}}</td>
+              <td>{{f.datefiche | date:'longDate'}}</td>
+              <td>{{f.livreur}}</td>
+              <td>{{f.montantbrut}} TND</td>
+              <td>{{f.montantnet}} TND</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

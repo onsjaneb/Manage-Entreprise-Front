@@ -21,6 +21,7 @@ export class ComponentAddFichedepaieComponent implements OnInit {
   parlivreurt: any;
   Livraison: any = [];
   fichepaie = new FichePaie();
+  response:any;
   constructor(
     private clientservice: ClientService,
     private modalService: NgbModal
@@ -47,8 +48,8 @@ export class ComponentAddFichedepaieComponent implements OnInit {
       .PartLivreurFiche(this.livreur, this.datedebut, this.datefin)
       .subscribe((res) => {
         this.parlivreurt = res;
-        this.fichepaie.montantbrut = this.parlivreurt[0].sum;
-        this.fichepaie.montantnet = this.parlivreurt[0].sum;
+        this.fichepaie.montantbrut = (this.parlivreurt[0].sum).toFixed(2);
+        this.fichepaie.montantnet = (this.parlivreurt[0].sum).toFixed(2);
       });
   }
   GetLivreur() {
@@ -81,6 +82,7 @@ export class ComponentAddFichedepaieComponent implements OnInit {
               Avance: this.recus[i].Avance,
             });
           }
+          this.fichepaie.livraison=this.Livraison;
           this.fichepaie.livreur = this.livreur;
         });
       this.GetStat();
@@ -88,22 +90,22 @@ export class ComponentAddFichedepaieComponent implements OnInit {
   }
   Retour() {
     this.fichepaie.montantnet = (
-      this.fichepaie.montantbrut - this.fichepaie.retour
+      this.fichepaie.montantnet - this.fichepaie.retour
     ).toFixed(2);
   }
   Abonnement() {
     this.fichepaie.montantnet = (
-      this.fichepaie.montantbrut - this.fichepaie.abonnementorange
+      this.fichepaie.montantnet - this.fichepaie.abonnementorange
     ).toFixed(2);
   }
   Caution() {
     this.fichepaie.montantnet = (
-      this.fichepaie.montantbrut - this.fichepaie.cautionsac
+      this.fichepaie.montantnet - this.fichepaie.cautionsac
     ).toFixed(2);
   }
   LivraisonGratuit() {
     this.fichepaie.montantnet = (
-      this.fichepaie.montantbrut - this.fichepaie.livraisongratuite
+      this.fichepaie.montantnet - this.fichepaie.livraisongratuite
     ).toFixed(2);
   }
   openXlModal(content: TemplateRef<any>) {
@@ -111,5 +113,28 @@ export class ComponentAddFichedepaieComponent implements OnInit {
       .open(content, { size: 'xl' })
       .result.then((result) => {})
       .catch((res) => {});
+  }
+  Ajouterfiche(){
+    this.clientservice.Ajoutfiche(this.fichepaie).subscribe(res=>{
+      this.response =res;
+      if(this.response.message=="Fiche added successfully"){
+        Swal.fire({
+          title: 'Fiche paie ajouté :)',
+          text: '',
+          showConfirmButton: false,
+          timer: 3000,
+          icon: 'success',
+        });
+      }
+      else{
+        Swal.fire({
+          title: 'Quelque chose ne marche pas',
+          text: '',
+          showConfirmButton: false,
+          timer: 3000,
+          icon: 'error',
+        });
+      }
+    })
   }
 }

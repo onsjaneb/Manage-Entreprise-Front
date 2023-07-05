@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   CaisseModel,
   ClientModel,
+  FichePaie,
   LivreurModel,
   RecuModel,
   UsersModel,
@@ -321,5 +322,26 @@ export class ClientService {
     return this.http.get(environment.apiurl + '/Checktelex/' + Telephone, {
       headers: headers,
     });
+  }
+  Ajoutfiche(data: FichePaie) {
+    const headers = new HttpHeaders();
+    return this.http.post(environment.apiurl + '/CreateFiche', data, {
+      headers: headers,
+    });
+  }
+  Fichepaie(livreur: any, Datedebut: any, Datefin: any) {
+    const headers = new HttpHeaders();
+    return this.http.get(
+      environment.apiurl +
+        '/FichePaie/' +
+        livreur +
+        '/' +
+        Datedebut +
+        '/' +
+        Datefin,
+      {
+        headers: headers,
+      }
+    );
   }
 }

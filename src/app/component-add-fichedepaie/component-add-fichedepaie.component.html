@@ -4,7 +4,7 @@
       de paie</h6>
     <div class="row mt-5">
       <div class="col-md-4">
-        <label for="Datenaissance" class="form-label">Selectionner Livreur</label>
+        <label for="Date" class="form-label">Selectionner Livreur</label>
         <select class="form-select form-select-sm mb-3">
           <option selected value></option>
           <option *ngFor="let l of livreurs"
@@ -12,12 +12,12 @@
         </select>
       </div>
       <div class="col-md-4">
-        <label for="Datenaissance" class="form-label">De</label>
+        <label for="Date" class="form-label">De</label>
         <input type="date" class="form-control" [(ngModel)]="datedebut"
           [ngModelOptions]="{standalone: true}" required>
       </div>
       <div class="col-md-4">
-        <label for="Datenaissance" class="form-label">À</label>
+        <label for="Date" class="form-label">À</label>
         <input type="date" class="form-control" [(ngModel)]="datefin"
           [ngModelOptions]="{standalone: true}" required>
       </div>
@@ -114,31 +114,49 @@
                   </table>
                   <div class="row mt-3">
                     <div class="col-md-3"><label class="form-label">Retour</label><input
+                        (change)="Retour()"
                         type="number"
                         class="form-control"
                         [(ngModel)]="fichepaie.retour"
                         [ngModelOptions]="{standalone: true}" required></div>
-                    <div class="col-md-3"><label class="form-label">Abonnement orange</label><input type="number"
+                    <div class="col-md-3"><label class="form-label">Abonnement
+                        orange</label><input type="number"
+                        (change)="Abonnement()"
                         class="form-control"
                         [(ngModel)]="fichepaie.abonnementorange"
                         [ngModelOptions]="{standalone: true}" required></div>
-                    <div class="col-md-3"><label class="form-label">Caution sac</label><input type="number"
+                    <div class="col-md-3"><label class="form-label">Caution sac</label><input
+                        type="number"
+                        (change)="Caution()"
                         class="form-control"
                         [(ngModel)]="fichepaie.cautionsac"
                         [ngModelOptions]="{standalone: true}" required></div>
-                    <div class="col-md-3"><label class="form-label">Livraison gratuite</label><input type="number"
+                    <div class="col-md-3"><label class="form-label">Livraison
+                        gratuite</label><input type="number"
+                        (change)="LivraisonGratuit()"
                         class="form-control"
                         [(ngModel)]="fichepaie.livraisongratuite"
                         [ngModelOptions]="{standalone: true}" required></div>
                   </div>
-                  <table class="table mt-3">
-                    <tr>
-                      <th>Montant Brut : {{fichepaie.montantbrut}} TND</th>
-                    </tr>
-                    <tr>
-                      <th>Montant Net : {{fichepaie.montantnet}} TND</th>
-                    </tr>
-                  </table>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <table class="table mt-3">
+                        <tr>
+                          <th>Montant Brut : {{fichepaie.montantbrut}} TND</th>
+                        </tr>
+                        <tr>
+                          <th>Montant Net : {{fichepaie.montantnet}} TND</th>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="submit" (click)="modal.close('by:
+                      close icon')" (click)=" Ajouterfiche()"
+                        class="btn btn-primary mt-3"><i class="feather
+                      icon-file-plus"></i>
+                        Ajouter</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
