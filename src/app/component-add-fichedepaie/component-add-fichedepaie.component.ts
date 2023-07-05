@@ -21,7 +21,7 @@ export class ComponentAddFichedepaieComponent implements OnInit {
   parlivreurt: any;
   Livraison: any = [];
   fichepaie = new FichePaie();
-  response:any;
+  response: any;
   constructor(
     private clientservice: ClientService,
     private modalService: NgbModal
@@ -48,8 +48,8 @@ export class ComponentAddFichedepaieComponent implements OnInit {
       .PartLivreurFiche(this.livreur, this.datedebut, this.datefin)
       .subscribe((res) => {
         this.parlivreurt = res;
-        this.fichepaie.montantbrut = (this.parlivreurt[0].sum).toFixed(2);
-        this.fichepaie.montantnet = (this.parlivreurt[0].sum).toFixed(2);
+        this.fichepaie.montantbrut = this.parlivreurt[0].sum.toFixed(2);
+        this.fichepaie.montantnet = this.parlivreurt[0].sum.toFixed(2);
       });
   }
   GetLivreur() {
@@ -82,7 +82,7 @@ export class ComponentAddFichedepaieComponent implements OnInit {
               Avance: this.recus[i].Avance,
             });
           }
-          this.fichepaie.livraison=this.Livraison;
+          this.fichepaie.livraison = JSON.stringify(this.Livraison);
           this.fichepaie.livreur = this.livreur;
         });
       this.GetStat();
@@ -114,10 +114,10 @@ export class ComponentAddFichedepaieComponent implements OnInit {
       .result.then((result) => {})
       .catch((res) => {});
   }
-  Ajouterfiche(){
-    this.clientservice.Ajoutfiche(this.fichepaie).subscribe(res=>{
-      this.response =res;
-      if(this.response.message=="Fiche added successfully"){
+  Ajouterfiche() {
+    this.clientservice.Ajoutfiche(this.fichepaie).subscribe((res) => {
+      this.response = res;
+      if (this.response.message == 'Fiche added successfully') {
         Swal.fire({
           title: 'Fiche paie ajouté :)',
           text: '',
@@ -125,8 +125,7 @@ export class ComponentAddFichedepaieComponent implements OnInit {
           timer: 3000,
           icon: 'success',
         });
-      }
-      else{
+      } else {
         Swal.fire({
           title: 'Quelque chose ne marche pas',
           text: '',
@@ -135,6 +134,6 @@ export class ComponentAddFichedepaieComponent implements OnInit {
           icon: 'error',
         });
       }
-    })
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,7 +13,7 @@ export class FichedePaieComponent implements OnInit {
   datefin: any;
   livreur: any;
   result: any;
-  nbrfiche:any;
+  nbrfiche: any;
   constructor(
     private clientservice: ClientService,
     private modalService: NgbModal
@@ -34,7 +34,15 @@ export class FichedePaieComponent implements OnInit {
       .Fichepaie(this.livreur, this.datedebut, this.datefin)
       .subscribe((res) => {
         this.result = res;
-        this.nbrfiche=this.result.length;
+        console.log(this.result);
+        this.nbrfiche = this.result.length;
       });
+  }
+
+  openXlModal(content: TemplateRef<any>) {
+    this.modalService
+      .open(content, { size: 'xl' })
+      .result.then((result) => {})
+      .catch((res) => {});
   }
 }

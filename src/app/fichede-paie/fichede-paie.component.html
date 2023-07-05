@@ -6,41 +6,56 @@
         <label for="Date" class="form-label">Selectionner Livreur</label>
         <select class="form-select form-select-sm mb-3">
           <option selected value></option>
-          <option *ngFor="let l of livreurs"
-            (click)="SelectLivreur(l.NomComplet)">{{l.NomComplet}}</option>
+          <option
+            *ngFor="let l of livreurs"
+            (click)="SelectLivreur(l.NomComplet)"
+          >
+            {{ l.NomComplet }}
+          </option>
         </select>
       </div>
       <div class="col-md-4">
         <label for="Date" class="form-label">De</label>
-        <input type="date" class="form-control" [(ngModel)]="datedebut"
-          [ngModelOptions]="{standalone: true}" required>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="datedebut"
+          [ngModelOptions]="{ standalone: true }"
+          required
+        />
       </div>
       <div class="col-md-4">
         <label for="Date" class="form-label">À</label>
-        <input type="date" class="form-control" [(ngModel)]="datefin"
-          [ngModelOptions]="{standalone: true}" required>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="datefin"
+          [ngModelOptions]="{ standalone: true }"
+          required
+        />
       </div>
-      <div class="col-md-5">
-      </div>
-      <div class="col-md-5">
-      </div>
+      <div class="col-md-5"></div>
+      <div class="col-md-5"></div>
       <div class="col-md-2 mt-3">
-        <button type="submit" (click)="Recherche()"
-          class="btn btn-primary me-2"><i class="feather
-            icon-search"></i>
-          Recherche</button>
+        <button
+          type="submit"
+          (click)="Recherche()"
+          class="btn btn-primary me-2"
+        >
+          <i class="feather icon-search"></i> Recherche
+        </button>
       </div>
     </div>
-    <div class="row mt-5" *ngIf="nbrfiche==0">
-      <div class="col-md-3">
-      </div>
+    <div class="row mt-5" *ngIf="nbrfiche == 0">
+      <div class="col-md-3"></div>
       <div class="col-md-6">
-        <h6>0 fiches pour {{livreur}} entre {{datedebut}} et {{datefin}}</h6>
+        <h6>
+          0 fiches pour {{ livreur }} entre {{ datedebut }} et {{ datefin }}
+        </h6>
       </div>
-      <div class="col-md-3">
-      </div>
+      <div class="col-md-3"></div>
     </div>
-    <div class="row mt-5" *ngIf="nbrfiche>0">
+    <div class="row mt-5" *ngIf="nbrfiche > 0">
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -53,13 +68,88 @@
               <th>Montant Net</th>
             </tr>
             <tr *ngFor="let f of result">
-              <td><button type="button"
-                  class="btn btn-primary"><i class="mdi mdi-eye"></i></button></td>
-              <td>{{f.id}}</td>
-              <td>{{f.datefiche | date:'longDate'}}</td>
-              <td>{{f.livreur}}</td>
-              <td>{{f.montantbrut}} TND</td>
-              <td>{{f.montantnet}} TND</td>
+              <td>
+                <button
+                  type="button"
+                  (click)="openXlModal(voirfiche)"
+                  class="btn btn-primary"
+                >
+                  <i class="mdi mdi-eye"></i>
+                </button>
+              </td>
+              <td>{{ f.id }}</td>
+              <td>{{ f.datefiche | date : "longDate" }}</td>
+              <td>{{ f.livreur }}</td>
+              <td>{{ f.montantbrut }} TND</td>
+              <td>{{ f.montantnet }} TND</td>
+
+              <ng-template #voirfiche let-modal class="border">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <a class="sidebar-brand nobleui-logo">
+                          Menu<span>tium</span>
+                        </a>
+                        <div class="row mt-2">
+                          <div class="col-md-6 mt-2">
+                            <h5>Numéro de fiche : {{ f.id }}</h5>
+                          </div>
+                          <div class="col-md-6 mt-2">
+                            <h5>
+                              Date : {{ f.datefiche | date : "longDate" }}
+                            </h5>
+                          </div>
+                          <div class="col-md-6 mt-2">
+                            <h5>Livreur : {{ f.livreur }}</h5>
+                          </div>
+                          <div class="mt-3">
+                            <div class="row" *ngFor="let l of f.livraison">
+                              <div class="col-md-4 mt-2">
+                                <h5>
+                                  Date De Livraison:
+                                  {{ l.Date | date : "longDate" }}
+                                </h5>
+                              </div>
+                              <div class="col-md-4 mt-2">
+                                <h5>Part Livreur: {{ l.PartLivreur }}</h5>
+                              </div>
+                              <div class="col-md-4 mt-2">
+                                <h5>Avance: {{ l.Avance }}</h5>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mt-3">
+                            <h5>Retour : {{ f.retour }}</h5>
+                          </div>
+                          <div class="col-md-4 mt-3"></div>
+                          <div class="col-md-4 mt-3">
+                            <h5>
+                              Abonnement Orange : {{ f.abonnementorange }}
+                            </h5>
+                          </div>
+                          <div class="col-md-4 mt-2">
+                            <h5>Coution Sac : {{ f.cautionsac }}</h5>
+                          </div>
+                          <div class="col-md-4 mt-3"></div>
+                          <div class="col-md-4 mt-2">
+                            <h5>
+                              Livraison Gratuite : {{ f.livraisongratuite }}
+                            </h5>
+                          </div>
+                          <div class="col-md-4 mt-2">
+                            <h5>Montant Brute : {{ f.montantbrut }}</h5>
+                          </div>
+                          <div class="col-md-4 mt-3"></div>
+                          <div class="col-md-4 mt-2">
+                            <h5>Montant Net : {{ f.montantnet }}</h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
             </tr>
           </thead>
         </table>

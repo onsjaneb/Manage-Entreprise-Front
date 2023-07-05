@@ -83,3 +83,10 @@ export class FichePaie {
   montantbrut: any;
   montantnet: any;
 }
+
+export class Depenses {
+  id: any;
+  Montant: any;
+  Motif: any;
+  Date: any;
+}

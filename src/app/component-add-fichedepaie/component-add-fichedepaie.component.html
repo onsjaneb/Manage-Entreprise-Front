@@ -1,54 +1,73 @@
 <div class="card">
   <div class="card-body">
-    <h6 class="card-title"><i class="feather icon-file-plus"></i> Ajouter Fiche
-      de paie</h6>
+    <h6 class="card-title">
+      <i class="feather icon-file-plus"></i> Ajouter Fiche de paie
+    </h6>
     <div class="row mt-5">
       <div class="col-md-4">
         <label for="Date" class="form-label">Selectionner Livreur</label>
         <select class="form-select form-select-sm mb-3">
           <option selected value></option>
-          <option *ngFor="let l of livreurs"
-            (click)="SelectLivreur(l.NomComplet)">{{l.NomComplet}}</option>
+          <option
+            *ngFor="let l of livreurs"
+            (click)="SelectLivreur(l.NomComplet)"
+          >
+            {{ l.NomComplet }}
+          </option>
         </select>
       </div>
       <div class="col-md-4">
         <label for="Date" class="form-label">De</label>
-        <input type="date" class="form-control" [(ngModel)]="datedebut"
-          [ngModelOptions]="{standalone: true}" required>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="datedebut"
+          [ngModelOptions]="{ standalone: true }"
+          required
+        />
       </div>
       <div class="col-md-4">
         <label for="Date" class="form-label">À</label>
-        <input type="date" class="form-control" [(ngModel)]="datefin"
-          [ngModelOptions]="{standalone: true}" required>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="datefin"
+          [ngModelOptions]="{ standalone: true }"
+          required
+        />
       </div>
-      <div class="col-md-5">
-      </div>
-      <div class="col-md-5">
-      </div>
+      <div class="col-md-5"></div>
+      <div class="col-md-5"></div>
       <div class="col-md-2 mt-3">
-        <button type="submit" (click)="Recherche()"
-          class="btn btn-primary me-2"><i class="feather
-            icon-search"></i>
-          Recherche</button>
+        <button
+          type="submit"
+          (click)="Recherche()"
+          class="btn btn-primary me-2"
+        >
+          <i class="feather icon-search"></i> Recherche
+        </button>
       </div>
     </div>
-    <div class="row mt-5" *ngIf="nbrrecu==0">
-      <div class="col-md-3">
-
-      </div>
+    <div class="row mt-5" *ngIf="nbrrecu == 0">
+      <div class="col-md-3"></div>
       <div class="col-md-6">
-        <h6>0 reçus pour {{livreur}} entre {{datedebut}} et {{datefin}}</h6>
+        <h6>
+          0 reçus pour {{ livreur }} entre {{ datedebut }} et {{ datefin }}
+        </h6>
       </div>
-      <div class="col-md-3">
-      </div>
+      <div class="col-md-3"></div>
     </div>
-    <div class="table-responsive mt-1" *ngIf="nbrrecu>0">
+    <div class="table-responsive mt-1" *ngIf="nbrrecu > 0">
       <div class="row">
-        <div class="col-md-4"> <button type="submit"
+        <div class="col-md-4">
+          <button
+            type="submit"
             (click)="openXlModal(fichedepaie)"
-            class="btn btn-primary me-2"><i class="feather
-            icon-file-plus"></i>
-            Créer fiche de paie</button></div>
+            class="btn btn-primary me-2"
+          >
+            <i class="feather icon-file-plus"></i> Créer fiche de paie
+          </button>
+        </div>
       </div>
       <table class="table mt-1">
         <thead>
@@ -68,99 +87,133 @@
         </thead>
         <tbody *ngFor="let r of recus">
           <tr>
-            <td class="liv">{{r.DateCompta| date:'longDate'}}</td>
-            <td class="liv">{{r.Livreur}} TND</td>
-            <td class="liv">{{r.Fraislivraison}} TND</td>
-            <td>{{r.Commission}} TND</td>
-            <td>{{r.Totalrecu}} TND</td>
-            <td>{{r.PartEntreprise}} TND</td>
-            <td class="liv">{{r.Partlivreur}} TND</td>
-            <td class="liv">{{r.Avance}} TND</td>
-            <td class="liv">{{r.Retour}} TND</td>
-            <td>{{r.RecuNet}} TND</td>
-            <tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+            <td class="liv">{{ r.DateCompta | date : "longDate" }}</td>
+            <td class="liv">{{ r.Livreur }} TND</td>
+            <td class="liv">{{ r.Fraislivraison }} TND</td>
+            <td>{{ r.Commission }} TND</td>
+            <td>{{ r.Totalrecu }} TND</td>
+            <td>{{ r.PartEntreprise }} TND</td>
+            <td class="liv">{{ r.Partlivreur }} TND</td>
+            <td class="liv">{{ r.Avance }} TND</td>
+            <td class="liv">{{ r.Retour }} TND</td>
+            <td>{{ r.RecuNet }} TND</td>
+          </tr>
+
+          <tr></tr>
+        </tbody>
+      </table>
     </div>
-    <ng-template #fichedepaie let-modal>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <a class="sidebar-brand nobleui-logo">
-                Menu<span>tium</span>
-              </a>
-              <div class="row mt-2">
-                <div class="table-responsive">
-                  <table class="table mt-1">
-                    <th>Livreur : {{fichepaie.livreur}}</th>
-                    <th>Date Fiche : {{fichepaie.datefiche | date:'longDate'}}</th>
-                  </table>
+  </div>
+</div>
+<ng-template #fichedepaie let-modal>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <a class="sidebar-brand nobleui-logo"> Menu<span>tium</span> </a>
+
+          <div class="row mt-2">
+            <div class="table-responsive">
+              <table class="table mt-1">
+                <th>Livreur : {{ fichepaie.livreur }}</th>
+                <th>
+                  Date Fiche : {{ fichepaie.datefiche | date : "longDate" }}
+                </th>
+              </table>
+              <table class="table mt-3">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Part Livreur<br />(- avance)</th>
+                    <th>Avance</th>
+                  </tr>
+                </thead>
+                <tr *ngFor="let l of Livraison">
+                  <td>{{ l.Date | date : "longDate" }}</td>
+                  <td>{{ l.PartLivreur }} TND</td>
+                  <td>{{ l.Avance }} TND</td>
+                </tr>
+              </table>
+              <div class="row mt-3">
+                <div class="col-md-3">
+                  <label class="form-label">Retour</label
+                  ><input
+                    (change)="Retour()"
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="fichepaie.retour"
+                    [ngModelOptions]="{ standalone: true }"
+                    required
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Abonnement orange</label
+                  ><input
+                    type="number"
+                    (change)="Abonnement()"
+                    class="form-control"
+                    [(ngModel)]="fichepaie.abonnementorange"
+                    [ngModelOptions]="{ standalone: true }"
+                    required
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Caution sac</label
+                  ><input
+                    type="number"
+                    (change)="Caution()"
+                    class="form-control"
+                    [(ngModel)]="fichepaie.cautionsac"
+                    [ngModelOptions]="{ standalone: true }"
+                    required
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Livraison gratuite</label
+                  ><input
+                    type="number"
+                    (change)="LivraisonGratuit()"
+                    class="form-control"
+                    [(ngModel)]="fichepaie.livraisongratuite"
+                    [ngModelOptions]="{ standalone: true }"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10">
                   <table class="table mt-3">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Part Livreur<br>(- avance)</th>
-                        <th>Avance</th>
-                      </tr>
-                    </thead>
-                    <tr *ngFor="let l of Livraison">
-                      <td>{{l.Date | date:'longDate'}}</td>
-                      <td>{{l.PartLivreur}} TND</td>
-                      <td>{{l.Avance}} TND</td>
+                    <tr>
+                      <th>
+                        Montant Brut :
+                        {{ fichepaie.montantbrut }} TND
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>Montant Net : {{ fichepaie.montantnet }} TND</th>
                     </tr>
                   </table>
-                  <div class="row mt-3">
-                    <div class="col-md-3"><label class="form-label">Retour</label><input
-                        (change)="Retour()"
-                        type="number"
-                        class="form-control"
-                        [(ngModel)]="fichepaie.retour"
-                        [ngModelOptions]="{standalone: true}" required></div>
-                    <div class="col-md-3"><label class="form-label">Abonnement
-                        orange</label><input type="number"
-                        (change)="Abonnement()"
-                        class="form-control"
-                        [(ngModel)]="fichepaie.abonnementorange"
-                        [ngModelOptions]="{standalone: true}" required></div>
-                    <div class="col-md-3"><label class="form-label">Caution sac</label><input
-                        type="number"
-                        (change)="Caution()"
-                        class="form-control"
-                        [(ngModel)]="fichepaie.cautionsac"
-                        [ngModelOptions]="{standalone: true}" required></div>
-                    <div class="col-md-3"><label class="form-label">Livraison
-                        gratuite</label><input type="number"
-                        (change)="LivraisonGratuit()"
-                        class="form-control"
-                        [(ngModel)]="fichepaie.livraisongratuite"
-                        [ngModelOptions]="{standalone: true}" required></div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-10">
-                      <table class="table mt-3">
-                        <tr>
-                          <th>Montant Brut : {{fichepaie.montantbrut.toFixed(2)}} TND</th>
-                        </tr>
-                        <tr>
-                          <th>Montant Net : {{fichepaie.montantnet.toFixed(2)}} TND</th>
-                        </tr>
-                      </table>
-                    </div>
-                    <div class="col-md-2">
-                      <button type="submit" (click)="modal.close('by:
-                      close icon')" (click)=" Ajouterfiche()"
-                        class="btn btn-primary mt-3"><i class="feather
-                      icon-file-plus"></i>
-                        Ajouter</button>
-                    </div>
-                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button
+                    type="submit"
+                    (click)="
+                      modal.close(
+                        'by:
+                      close icon'
+                      )
+                    "
+                    (click)="Ajouterfiche()"
+                    class="btn btn-primary mt-3"
+                  >
+                    <i class="feather icon-file-plus"></i> Ajouter
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </ng-template>
+    </div>
+  </div>
+</ng-template>

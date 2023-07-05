@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   CaisseModel,
   ClientModel,
+  Depenses,
   FichePaie,
   LivreurModel,
   RecuModel,
@@ -173,6 +174,12 @@ export class ClientService {
   GetCaisse(): Observable<any> {
     const headers = new HttpHeaders();
     return this.http.get(environment.apiurl + '/Caisses', {
+      headers: headers,
+    });
+  }
+  AddCaisseFinaleDepense(data: Depenses) {
+    const headers = new HttpHeaders();
+    return this.http.post(environment.apiurl + '/CreateDepense', data, {
       headers: headers,
     });
   }

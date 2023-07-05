@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClientService } from '../services/client.service';
-
+import { formatDate } from '@angular/common';
+import { Depenses } from '../model/Client.model';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-caissefinale',
   templateUrl: './caissefinale.component.html',
-  styleUrls: ['./caissefinale.component.scss']
+  styleUrls: ['./caissefinale.component.scss'],
 })
 export class CaissefinaleComponent implements OnInit {
   caisse: any;
@@ -18,10 +21,16 @@ export class CaissefinaleComponent implements OnInit {
   Page: number = 1;
   TableSize: number = 5;
   Count: number = 0;
-  constructor(private clientservice: ClientService) {}
+  depense = new Depenses();
+  repdep: any;
+  constructor(
+    private clientservice: ClientService,
+    private modalService: NgbModal
+  ) {}
   ngOnInit(): void {
     this.GetCaisse();
     this.GetStats();
+    this.depense.Date = formatDate(new Date(), 'MMM d, y, h:mm:ss a', 'en');
   }
   GetStats() {
     this.clientservice.Getstats().subscribe((res) => {
@@ -75,5 +84,33 @@ export class CaissefinaleComponent implements OnInit {
   OnTableDataChange(event: any) {
     this.Page = event;
     this.GetCaisse();
+  }
+  openXlModal(content: TemplateRef<any>) {
+    this.modalService
+      .open(content, { size: 'xl' })
+      .result.then((result) => {})
+      .catch((res) => {});
+  }
+  AjouterDepense() {
+    this.clientservice.AddCaisseFinaleDepense(this.depense).subscribe((res) => {
+      this.repdep = res;
+      if (this.repdep.message == 'Depense added successfully') {
+        Swal.fire({
+          title: 'Dépense ajouté :)',
+          text: '',
+          showConfirmButton: false,
+          timer: 3000,
+          icon: 'success',
+        });
+      } else {
+        Swal.fire({
+          title: 'Quelque chose ne marche pas',
+          text: '',
+          showConfirmButton: false,
+          timer: 3000,
+          icon: 'error',
+        });
+      }
+    });
   }
 }
